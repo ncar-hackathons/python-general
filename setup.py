@@ -2,7 +2,6 @@ from setuptools import setup, find_packages
 import os
 import os.path as op
 from glob import glob
-from python_general import __version__
 
 # Location of the template files we use for cloning
 template_files = glob(
