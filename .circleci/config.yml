@@ -51,13 +51,13 @@ jobs:
             touch ./.nojekyll
 
       - run:
-        name: Commit results and push to gh-pages
-        command: |
-          git config --global user.email "abanihi@ucar.edu"
-          git config --global user.name "Xdev Bot"
-          git add -A
-          git commit -m "jekyll book web deploy"
-          git push -f origin gh-pages:gh-pages
+          name: Commit results and push to gh-pages
+          command: |
+            git config --global user.email "abanihi@ucar.edu"
+            git config --global user.name "Xdev Bot"
+            git add -A
+            git commit -m "jekyll book web deploy"
+            git push -f origin gh-pages:gh-pages
     
 
   run_tests:
@@ -82,11 +82,11 @@ jobs:
           key: cache-pip
           paths:
             - ~/.cache/pip
-      # Run tests
-      - run:
-          name: Tests
-          command: |
-            pytest scripts/tests/test_build.py  
+      # # Run tests
+      # - run:
+      #     name: Tests
+      #     command: |
+      #       pytest scripts/tests/test_build.py  
 
       # If tests pass, build the site itself
       - run:
