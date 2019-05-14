@@ -5,8 +5,8 @@ import shutil as sh
 from ruamel.yaml import YAML
 import pytest
 
-from jupyter_book.utils import _split_yaml
-from jupyter_book.create import new_book
+from python_general.utils import _split_yaml
+from python_general.create import new_book
 
 
 def read(path):
@@ -57,7 +57,7 @@ def test_round_trip(tmpdir):
         new_config = yaml.load(ff)
 
     for ii in old_config.keys():
-        if ii not in ["jupyter_book_version"]:
+        if ii not in ["python_general_version"]:
             assert old_config[ii] == new_config[ii]
 
     # License
@@ -116,7 +116,7 @@ def test_config_update(tmpdir):
         new_config = yaml.load(ff)
 
     for ii in old_config.keys():
-        if ii not in ["jupyter_book_version"]:
+        if ii not in ["python_general_version"]:
             assert old_config[ii] == new_config[ii]
 
     # If we succeed, remove the tmpdir

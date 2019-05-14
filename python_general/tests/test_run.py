@@ -3,7 +3,7 @@ import os
 import os.path as op
 import shutil as sh
 
-from jupyter_book.run import run_book
+from python_general.run import run_book
 
 this_folder = op.dirname(__file__)
 
