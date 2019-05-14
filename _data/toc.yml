@@ -23,19 +23,16 @@
 - title: Search
   search: true
 
-- title: Getting started
-  url: /guide/01_overview
+- title: Getting Started
+  url: /beginners/01_lexical_structure
   not_numbered: true
   expand_sections: true
   sections:
-  - title: Create your book
-    url: /guide/02_create
-  - title: Build and publish your book
-    url: /guide/03_build
-  - title: FAQ
-    url: /guide/04_faq
-  - title: How-to and advanced topics
-    url: /guide/05_advanced
+  - title: Data Types
+    url: /beginners/02_data_types 
+  - title: Variable and Other References
+    url: /beginners/03_variables_and_references
+
 
 - title: Features and customization
   url: /features/features
