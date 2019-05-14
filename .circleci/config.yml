@@ -56,7 +56,7 @@ jobs:
             git config --global user.email "abanihi@ucar.edu"
             git config --global user.name "Xdev Bot"
             git add -A
-            git commit -m "jekyll book web deploy"
+            git commit -m "jekyll web deploy"
             git push -f origin gh-pages:gh-pages
     
 
