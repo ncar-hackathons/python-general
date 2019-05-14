@@ -109,10 +109,10 @@ scripts/tests/site/_build
 scripts/tests/site/content/LICENSE.md
 
 # Template build
-python_general/book_template/_build
+_build/
 
 
-python_general/tests/site/content/LICENSE.md
+python-general/tests/site/content/LICENSE.md
 README 2.md
 CONTRIBUTING.md
 LICENSE

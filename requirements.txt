@@ -1,8 +1,9 @@
-pytest
-ruamel.yaml
-tqdm
+# Requirements for the demo notebooks
+# Useful for MyBinder configuration
+pandas
 numpy
-pyyaml
-nbformat
-nbclean
-setuptools
+datascience
+folium
+matplotlib
+nbinteract
+scipy
