@@ -3,5 +3,5 @@
 
 
 # Python General 
-The content in this repository focus on fundamentals of Python programming language. 
+The content in this repository focuses on fundamentals of Python programming language. 
 
