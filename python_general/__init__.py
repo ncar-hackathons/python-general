@@ -1,2 +1,9 @@
-"""Build an online book using Jupyter Notebooks and Jekyll."""
-__version__ = "0.5.1dev0"
+"""fundamentals of Python programming language."""
+
+from pkg_resources import DistributionNotFound, get_distribution
+
+try:
+    __version__ = get_distribution(__name__).version
+except DistributionNotFound:
+    # package is not installed
+    pass
