@@ -20,11 +20,11 @@ jobs:
 
       # Tell Circle to store the documentation output in a folder that we can access later
       - store_artifacts:
-          path: python_general/book_template/_site/
+          path: ./_site/
           destination: html
 
       - store_artifacts:
-          path: python_general/book_template/_build/
+          path: ./_build/
           destination: _build
 
   # Deploy the built site to jupyter-book.github.io
@@ -52,14 +52,15 @@ jobs:
       # Copying over built website to the live site
       - run:
           name: Copy built site to a folder to store
-          command: cp -r ./python_general/book_template/_site ../_site
+          #command: cp -r ./python_general/book_template/_site ../_site
+          command: ls -ltr ./_site 
 
       - run:
           name: Change to gh-pages branch and replace w/ new site
           command: |
             git checkout gh-pages
             rm -rf ./*
-            cp -r ../_site/* ./
+            cp -r ./_site/* ./
             touch ./.nojekyll
 
       - run:
@@ -84,40 +85,25 @@ jobs:
       - restore_cache:
           keys:
             - cache-pip
-      - run: pip install --user flake8 pytest-cov
       # Install the packages needed to build our documentation
       # This will depend on your particular package!
-      - run: pip install --user -r requirements.txt
-      - run: pip install --user -e ./  # Install Jupyter Book CLI
+      - run: pip install jupyter-book  # Install Jupyter Book CLI
 
       # Cache some files for a speedup in subsequent builds
       - save_cache:
           key: cache-pip
           paths:
             - ~/.cache/pip
-      # Run tests
-      - run:
-          name: Tests
-          command: |
-            flake8 --count python_general
-            pytest --cov=./
-
-      # Run code coverage
-      - run:
-          name: codecov deploy
-          command: bash <(curl -s https://codecov.io/bash)
-
       # If tests pass, build the site itself
       - run:
           name: Build site markdown
-          command: jupyter-book build python_general/book_template/
+          command: jupyter-book build .
 
       # Persist the specified paths (see https://circleci.com/docs/2.0/workflows/#using-workspaces-to-share-data-among-jobs)
       - persist_to_workspace:
           root: .
           paths:
-            - python_general/book_template/_build/
-
+            - ./_build/
 
 
 # Tell CircleCI to use this workflow when it builds the site
@@ -155,8 +141,8 @@ commands:
       - run:
           name: Copy over built site files
           command: |
-            rm -rf python_general/book_template/_build
-            cp -r /tmp/workspace/python_general/book_template/_build ./python_general/book_template
+            rm -rf ./_build
+            cp -r /tmp/workspace/_build .
 
   build_site:
     description: "Build the site with Jekyll"
@@ -168,18 +154,20 @@ commands:
       - checkout
       - restore_cache:
           keys:
-            - rails-demo-bundle-v2-{{ checksum "python_general/book_template/Gemfile.lock" }}
+            - rails-demo-bundle-v2-{{ checksum "./Gemfile.lock" }}
             - rails-demo-bundle-v2-
 
       - run: gem install bundler
-      - run: cd python_general/book_template && bundle install
+      #- run: cd python_general/book_template && bundle install
+      - run: bundle install
 
       # Store bundle cache
       - save_cache:
-          key: rails-demo-bundle-v2-{{ checksum "python_general/book_template/Gemfile.lock" }}
+          key: rails-demo-bundle-v2-{{ checksum "./Gemfile.lock" }}
           paths:
             - vendor/bundle
 
       - run:
           name: Build the website
-          command: cd python_general/book_template && bundle exec jekyll build << parameters.build_args >>
+          #command: cd python_general/book_template && bundle exec jekyll build << parameters.build_args >>
+          command: bundle exec jekyll build << parameters.build_args >>
