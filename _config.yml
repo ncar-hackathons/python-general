@@ -16,14 +16,13 @@
 
 #######################################################################################
 # Jekyll site settings
-title: Jupyter Book
-author: The Jupyter Book Community
-email: choldgraf@berkeley.edu
-description: >- # this means to ignore newlines until "baseurl:"
-  This is an example book built with Jupyter Books.
+title: The Python General Guide
+author: The XDev Team 
+email: xdev@ucar.edu
+description: ''
 
-baseurl: "/jupyter-book" # the subpath of your site, e.g. /blog. If there is no subpath for your site, use an empty string ""
-url: "https://jupyter.org" # the base hostname & protocol for your site, e.g. http://example.com
+baseurl: "/python-general" # the subpath of your site, e.g. /blog. If there is no subpath for your site, use an empty string ""
+url: "https://ncar-hackathons.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 
 
 #######################################################################################
@@ -36,7 +35,7 @@ use_hide_code_button      : true  # If True, a small button appears to the right
 show_sidebar              : true  # Show the sidebar. Only set to false if your only wish to host a single page.
 collapse_inactive_chapters: true  # Whether to collapse the inactive chapters in the sidebar
 textbook_logo             : images/logo/logo.png  # A logo to be displayed at the top of your textbook sidebar
-textbook_logo_link        : https://jupyter.org/jupyter-book/intro.html  # A link for the logo.
+textbook_logo_link        : https://ncar-hackathons.github.io/python-general  # A link for the logo.
 sidebar_footer_text       : 'Powered by <a href="https://github.com/jupyter/jupyter-book">Jupyter Book</a>'
 number_toc_chapters       : true  # Whether to add numbers to chapterse in your Table of Contents. If true, you can control this at the Chapter level in _data/toc.yml
 
@@ -55,16 +54,16 @@ jupyterhub_url                   : ""  # The URL for your JupyterHub. If no URL,
 jupyterhub_interact_text         : "Interact"  # The text that interact buttons will contain.
 
 # Binder link settings
-use_binder_button                : true  # If 'true', add a binder button for interactive links
+use_binder_button                : false  # If 'true', add a binder button for interactive links
 binderhub_url                    : "https://mybinder.org"  # The URL for your BinderHub. If no URL, use ""
 binder_repo_base                 : "https://github.com/"  # The site on which the textbook repository is hosted
 binder_repo_org                  : "jupyter"  # The username or organization that owns this repository
 binder_repo_name                 : "jupyter-book"  # The name of the repository on the web
-binder_repo_branch               : "gh-pages"  # The branch on which your textbook is hosted.
+binder_repo_branch               : "master"  # The branch on which your textbook is hosted.
 binderhub_interact_text          : "Interact"  # The text that interact buttons will contain.
 
 # Thebelab settings
-use_thebelab_button              : true  # If 'true', display a button to allow in-page running code cells with Thebelab
+use_thebelab_button              : false  # If 'true', display a button to allow in-page running code cells with Thebelab
 thebelab_button_text             : "Thebelab"  # The text to display inside the Thebelab initialization button
 codemirror_theme                 : "abcdef"  # Theme for codemirror cells, for options see https://codemirror.net/doc/manual.html#config
 
@@ -132,6 +131,7 @@ collections:
 # The following items will not be processed, by default. Create a custom list
 # to override the default setting.
 exclude:
+  - notebooks/
   - scripts/
   - Gemfile
   - Gemfile.lock
@@ -146,4 +146,4 @@ plugins:
   - jekyll-scholar
 
 # Jupyter Book version - DO NOT CHANGE THIS. It is generated when a new book is created
-jupyter_book_version: INSERT
+jupyter_book_version: 2019.5dev0
