@@ -1,31 +1,18 @@
 version: 2.1
 jobs:
   # Build the site to store artifacts
-  demo_site:
+  site:
     docker:
       - image: circleci/ruby:2.6
     steps:
-      # Attach the built markdown files
-      - checkout
-      - attach_workspace:
-          # Must be absolute path or relative path from working_directory
-          at: /tmp/workspace
-
-      # Copy over the built markdown files
-      - copy_built_files
-
       # Build the site's HTML w/ the base_url for CircleCI artifacts
       - build_site:
           build_args: --baseurl /0/html/
 
       # Tell Circle to store the documentation output in a folder that we can access later
       - store_artifacts:
-          path: ./_site/
+          path: _site/
           destination: html
-
-      - store_artifacts:
-          path: ./_build/
-          destination: _build
 
   # Deploy the built site to jupyter-book.github.io
   deploy:
@@ -42,8 +29,10 @@ jobs:
           fingerprints:
             - "d4:c7:b2:33:d6:fc:9b:70:d6:8b:3e:09:6d:7b:bd:d2"
 
-      # Copy over the built markdown files
-      - copy_built_files
+      # Grab the the built markdown from the last step
+      - run:
+          name: Copy over built site files
+          command: rm -rf _build && cp -r /tmp/workspace/_build ./
 
       # Build the site so we have local files
       - build_site:
@@ -52,25 +41,24 @@ jobs:
       # Copying over built website to the live site
       - run:
           name: Copy built site to a folder to store
-          #command: cp -r ./python_general/book_template/_site ../_site
-          command: ls -ltr ./_site 
-
+          command: cp -r ./_site ../_site
       - run:
           name: Change to gh-pages branch and replace w/ new site
           command: |
             git checkout gh-pages
             rm -rf ./*
-            cp -r ./_site/* ./
+            cp -r ../_site/* ./
             touch ./.nojekyll
 
       - run:
-          name: Commit results and push to gh-pages
-          command: |
-            git config --global user.email "abanihi@ucar.edu"
-            git config --global user.name "Xdev Bot"
-            git add -A
-            git commit -m "jekyll book web deploy"
-            git push -f origin gh-pages:gh-pages
+        name: Commit results and push to gh-pages
+        command: |
+          git config --global user.email "abanihi@ucar.edu"
+          git config --global user.name "Xdev Bot"
+          git add -A
+          git commit -m "jekyll book web deploy"
+          git push -f origin gh-pages:gh-pages
+    
 
   run_tests:
     docker:
@@ -87,24 +75,31 @@ jobs:
             - cache-pip
       # Install the packages needed to build our documentation
       # This will depend on your particular package!
-      - run: pip install --user jupyter-book  # Install Jupyter Book CLI
-
+      - run: pip install --user -r build-requirements.txt
+      - run: pip install --user pytest
       # Cache some files for a speedup in subsequent builds
       - save_cache:
           key: cache-pip
           paths:
             - ~/.cache/pip
+      # Run tests
+      - run:
+          name: Tests
+          command: |
+            pytest scripts/tests/test_build.py  
+
       # If tests pass, build the site itself
       - run:
           name: Build site markdown
-          command: jupyter-book build .
+          command: python scripts/generate_book.py
 
       # Persist the specified paths (see https://circleci.com/docs/2.0/workflows/#using-workspaces-to-share-data-among-jobs)
       - persist_to_workspace:
           root: .
           paths:
-            - ./_build/
+            - _build/
 
+      
 
 # Tell CircleCI to use this workflow when it builds the site
 workflows:
@@ -116,9 +111,7 @@ workflows:
             branches:
               ignore:
                 - gh-pages
-      - demo_site:
-          requires:
-            - run_tests
+      - site:
           filters:
             branches:
               ignore:
@@ -134,16 +127,6 @@ workflows:
                   - gh-pages
 
 commands:
-  copy_built_files:
-    description: "Copy the build site files so we can build the HTML"
-    steps:
-      # Grab the the built markdown from the last step
-      - run:
-          name: Copy over built site files
-          command: |
-            rm -rf ./_build
-            cp -r /tmp/workspace/_build .
-
   build_site:
     description: "Build the site with Jekyll"
     parameters:
@@ -154,20 +137,19 @@ commands:
       - checkout
       - restore_cache:
           keys:
-            - rails-demo-bundle-v2-{{ checksum "./Gemfile.lock" }}
+            - rails-demo-bundle-v2-{{ checksum "Gemfile.lock" }}
             - rails-demo-bundle-v2-
-
+      
       - run: gem install bundler
-      #- run: cd python_general/book_template && bundle install
       - run: bundle install
 
       # Store bundle cache
       - save_cache:
-          key: rails-demo-bundle-v2-{{ checksum "./Gemfile.lock" }}
+          key: rails-demo-bundle-v2-{{ checksum "Gemfile.lock" }}
           paths:
             - vendor/bundle
 
       - run:
           name: Build the website
-          #command: cd python_general/book_template && bundle exec jekyll build << parameters.build_args >>
           command: bundle exec jekyll build << parameters.build_args >>
+      
