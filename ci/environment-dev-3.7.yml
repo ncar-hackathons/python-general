@@ -8,6 +8,7 @@ dependencies:
   - pip
   - python=3.7
   - jupyterlab
+  - jupyter_contrib_nbextensions
   - pip:
     - jupyter-book
   
