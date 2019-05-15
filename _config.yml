@@ -17,7 +17,7 @@
 #######################################################################################
 # Jekyll site settings
 title: The Python General Guide
-author: The XDev Team 
+author: The XDev Team
 email: xdev@ucar.edu
 description: ''
 
@@ -132,6 +132,9 @@ collections:
 # to override the default setting.
 exclude:
   - notebooks/
+  - binder
+  - ci
+  - .circleci
   - scripts/
   - Gemfile
   - Gemfile.lock
