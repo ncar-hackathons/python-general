@@ -32,6 +32,10 @@
     url: /beginners/02_data_types 
   - title: Variable and Other References
     url: /beginners/03_variables_and_references
+  - title: Sequence Operations
+    url: /beginners/04_sequence_operations
+ - title: Control Flow Statements
+    url: /beginners/05_control_flow_statements
 
 
 - title: Features and customization
