@@ -2,5 +2,4 @@
 set -ex
 
 # install jupyter-book
-cd ..
-python setup.py install
+echo "Done"
