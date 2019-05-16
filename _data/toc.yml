@@ -24,12 +24,14 @@
   search: true
 
 - title: Getting Started
-  url: /beginners/01_lexical_structure
+  url: /beginners/intro
   not_numbered: true
   expand_sections: true
   sections:
+  - title: Lexical Structure
+    url: /beginners/01_lexical_structure
   - title: Data Types
-    url: /beginners/02_data_types 
+    url: /beginners/02_data_types
   - title: Variable and Other References
     url: /beginners/03_variables_and_references
   - title: Sequence Operations
