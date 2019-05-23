@@ -31,6 +31,8 @@
   sections:
   - title: JupyterHub
     url: /jupyter/jhub
+  - title: Jupyter Notebook - Need to Know
+    url: /jupyter/notebook_need_to_know
 
 
 - divider: true
