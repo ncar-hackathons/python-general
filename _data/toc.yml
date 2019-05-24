@@ -33,6 +33,8 @@
     url: /jupyter/jhub
   - title: Jupyter Notebook - Need to Know
     url: /jupyter/notebook_need_to_know
+  - title: Jupyter Notebook - Going Deeper
+    url: /jupyter/notebook_going_deeper
 
 
 - divider: true
