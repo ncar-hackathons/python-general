@@ -1,0 +1,1396 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-138446982-4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-138446982-4');
+</script>
+
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,minimum-scale=1">
+
+  <title>Basic Data Structures</title>
+  <meta name="description" content="Basic Data Structures">
+
+  <link rel="canonical" href="https://ncar-hackathons.github.io/python-general/introduction/basic_data_structures.html">
+  <link rel="alternate" type="application/rss+xml" title="The Python General Guide" href="https://ncar-hackathons.github.io/python-general/feed.xml">
+
+  <meta property="og:url"         content="https://ncar-hackathons.github.io/python-general/introduction/basic_data_structures.html" />
+<meta property="og:type"        content="article" />
+<meta property="og:title"       content="Basic Data Structures" />
+<meta property="og:description" content="Basic Data Structures" />
+<meta property="og:image"       content="" />
+
+
+  <script type="application/ld+json">
+  {
+  "@context": "http://schema.org",
+  "@type": "NewsArticle",
+  "mainEntityOfPage":
+    "https://ncar-hackathons.github.io/python-general/introduction/basic_data_structures.html",
+  "headline":
+    "Basic Data Structures",
+  "datePublished":
+    "2019-05-31T17:47:38+00:00",
+  "dateModified":
+    "2019-05-31T17:47:38+00:00",
+  "description":
+    "Basic Data Structures",
+  "author": {
+    "@type": "Person",
+    "name": "The XDev Team"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Data 100 at UC Berkeley",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://ncar-hackathons.github.io/python-general",
+      "width": 60,
+      "height": 60
+    }
+  },
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://ncar-hackathons.github.io/python-general",
+    "height": 60,
+    "width": 60
+  }
+}
+
+  </script>
+  <link rel="stylesheet" href="/python-general/assets/css/styles.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css ">
+  <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png">
+
+  <!-- <link rel="manifest" href="/manifest.json"> -->
+  <!-- <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#efae0a"> -->
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="msapplication-TileImage" content="/mstile-144x144.png">
+  <meta name="theme-color" content="#233947">
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" type="image/x-icon" href="/python-general/images/logo/favicon.ico">
+
+  <!-- MathJax Config -->
+  <!-- Allow inline math using $ and automatically break long math lines -->
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+        processEscapes: true,
+        processEnvironments: true
+    },
+    CommonHTML: {
+        linebreaks: {
+            automatic: true,
+        },
+    },
+});
+</script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_CHTML' async></script>
+
+  <!-- DOM updating function -->
+  <script>
+const runWhenDOMLoaded = cb => {
+  if (document.readyState != 'loading') {
+    cb()
+  } else if (document.addEventListener) {
+    document.addEventListener('DOMContentLoaded', cb)
+  } else {
+    document.attachEvent('onreadystatechange', function() {
+      if (document.readyState == 'complete') cb()
+    })
+  }
+}
+
+// Helper function to init things quickly
+initFunction = function(myfunc) {
+  runWhenDOMLoaded(myfunc);
+  document.addEventListener('turbolinks:load', myfunc);
+};
+</script>
+
+  <!-- Define some javascript variables that will be useful in other javascript -->
+  <script>
+    const site_basename = '/python-general';
+  </script>
+
+  <!-- Add AnchorJS to let headers be linked -->
+  <script src="/python-general/assets/js/anchor.min.js"  type="text/javascript"></script>
+  <script>
+
+initFunction(function () {
+    anchors.add("main h1, main h2, main h3, main h4")
+});
+
+</script>
+
+  <!-- Include Turbolinks to make page loads fast -->
+  <!-- https://github.com/turbolinks/turbolinks -->
+  <script src="/python-general/assets/js/turbolinks.js" async></script>
+  <meta name="turbolinks-cache-control" content="no-cache">
+
+  <!-- Load nbinteract for widgets -->
+  
+
+  <!-- Load Thebelab for interactive widgets -->
+  <!-- Include Thebelab for interactive code if it's enabled -->
+
+
+<!-- Display Thebelab button in each code cell -->
+<script>
+/**
+ * Set up thebelab button for code blocks
+ */
+
+const thebelabCellButton = id =>
+  `<a id="thebelab-cell-button-${id}" class="btn thebebtn o-tooltip--left" data-tooltip="Interactive Mode">
+    <img src="/python-general/assets/images/edit-button.svg" alt="Start interactive mode">
+  </a>`
+
+
+const addThebelabButtonToCodeCells =  () => {
+
+  const codeCells = document.querySelectorAll('div.input_area > div.highlighter-rouge:not(.output) pre')
+  codeCells.forEach((codeCell, index) => {
+    const id = codeCellId(index)
+    codeCell.setAttribute('id', id)
+    if (document.getElementById("thebelab-cell-button-" + id) == null) {
+      codeCell.insertAdjacentHTML('afterend', thebelabCellButton(id));
+    }
+  })
+}
+
+initFunction(addThebelabButtonToCodeCells);
+</script>
+
+
+
+<script type="text/x-thebe-config">
+    {
+      requestKernel: true,
+      binderOptions: {
+        repo: 'ncar-hackathons/python-general',
+        ref: 'master',
+      },
+      codeMirrorConfig: {
+        theme: "abcdef"
+      },
+      kernelOptions: {
+        name: 'python3',
+      }
+    }
+</script>
+<script src="https://unpkg.com/thebelab@0.4.0/lib/index.js"></script>
+<script>
+    /**
+     * Add attributes to Thebelab blocks
+     */
+
+    const initThebelab = () => {
+        const addThebelabToCodeCells = () => {
+            console.log("Adding thebelab to code cells...");
+            // If Thebelab hasn't loaded, wait a bit and try again. This
+            // happens because we load ClipboardJS asynchronously.
+            if (window.thebelab === undefined) {
+                setTimeout(addThebelabToCodeCells, 250)
+            return
+            }
+
+            // If we already detect a Thebelab cell, don't re-run
+            if (document.querySelectorAll('div.thebelab-cell').length > 0) {
+                return;
+            }
+
+            // Find all code cells, replace with Thebelab interactive code cells
+            const codeCells = document.querySelectorAll('.input_area pre')
+            codeCells.forEach((codeCell, index) => {
+                const id = codeCellId(index)
+                codeCell.setAttribute('data-executable', 'true')
+
+                // Figure out the language it uses and add this too
+                var parentDiv = codeCell.parentElement.parentElement;
+                var arrayLength = parentDiv.classList.length;
+                for (var ii = 0; ii < arrayLength; ii++) {
+                    var parts = parentDiv.classList[ii].split('language-');
+                    if (parts.length === 2) {
+                        // If found, assign dataLanguage and break the loop
+                        var dataLanguage = parts[1];
+                        break;
+                    }
+                }
+                codeCell.setAttribute('data-language', dataLanguage)
+
+                // If the code cell is hidden, show it
+                var inputCheckbox = document.querySelector(`input#hidebtn${codeCell.id}`);
+                if (inputCheckbox !== null) {
+                    setCodeCellVisibility(inputCheckbox, 'visible');
+                }
+            });
+
+            // Remove the event listener from the page so keyboard press doesn't
+            // Change page
+            document.removeEventListener('keydown', initPageNav)
+            keyboardListener = false;
+
+            // Init thebelab
+            thebelab.bootstrap();
+
+            // Remove copy buttons since they won't work anymore
+            const copyAndThebeButtons = document.querySelectorAll('.copybtn, .thebebtn')
+            copyAndThebeButtons.forEach((button, index) => {
+                button.remove();
+            });
+
+            // Remove outputs since they'll be stale
+            const outputs = document.querySelectorAll('.output *, .output')
+            outputs.forEach((output, index) => {
+                output.remove();
+            });
+        }
+
+        // Add event listener for the function to modify code cells
+        const thebelabButtons = document.querySelectorAll('[id^=thebelab], [id$=thebelab]')
+        thebelabButtons.forEach((thebelabButton,index) => {
+            if (thebelabButton === null) {
+                setTimeout(initThebelab, 250)
+                return
+            };
+            thebelabButton.addEventListener('click', addThebelabToCodeCells);
+        });
+    }
+
+    // Initialize Thebelab
+    initFunction(initThebelab);
+</script>
+
+
+
+  <!-- Load the auto-generating TOC -->
+  <script src="/python-general/assets/js/tocbot.min.js"  type="text/javascript"></script>
+  <script>
+var initToc = function () {
+  tocbot.init({
+    tocSelector: 'nav.onthispage',
+    contentSelector: '.c-textbook__content',
+    headingSelector: 'h2, h3',
+    orderedList: false,
+    collapseDepth: 6,
+    listClass: 'toc__menu',
+    activeListItemClass: "",  // Not using
+    activeLinkClass: "", // Not using
+  });
+  tocbot.refresh();
+}
+initFunction(initToc);
+</script>
+
+  <!-- Google analytics -->
+  <script src="/python-general/assets/js/ga.js" async></script>
+
+  <!-- Clipboard copy button -->
+  <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" async></script>
+
+  <!-- Load JS that depends on site variables -->
+  <script>
+/**
+ * Set up copy/paste for code blocks
+ */
+const codeCellId = index => `codecell${index}`
+
+const clipboardButton = id =>
+  `<a id="copy-button-${id}" class="btn copybtn o-tooltip--left" data-tooltip="Copy" data-clipboard-target="#${id}">
+    <img src="/python-general/assets/images/copy-button.svg" alt="Copy to clipboard">
+  </a>`
+
+// Clears selected text since ClipboardJS will select the text when copying
+const clearSelection = () => {
+  if (window.getSelection) {
+    window.getSelection().removeAllRanges()
+  } else if (document.selection) {
+    document.selection.empty()
+  }
+}
+
+// Changes tooltip text for two seconds, then changes it back
+const temporarilyChangeTooltip = (el, newText) => {
+  const oldText = el.getAttribute('data-tooltip')
+  el.setAttribute('data-tooltip', newText)
+  setTimeout(() => el.setAttribute('data-tooltip', oldText), 2000)
+}
+
+const addCopyButtonToCodeCells = () => {
+  // If ClipboardJS hasn't loaded, wait a bit and try again. This
+  // happens because we load ClipboardJS asynchronously.
+  if (window.ClipboardJS === undefined) {
+    setTimeout(addCopyButtonToCodeCells, 250)
+    return
+  }
+
+  const codeCells = document.querySelectorAll('div.c-textbook__content > div.highlighter-rouge > div.highlight > pre, div.input_area pre')
+  codeCells.forEach((codeCell, index) => {
+    const id = codeCellId(index)
+    codeCell.setAttribute('id', id)
+    if (document.getElementById("copy-button" + id) == null) {
+      codeCell.insertAdjacentHTML('afterend', clipboardButton(id));
+    }
+  })
+
+  const clipboard = new ClipboardJS('.copybtn')
+  clipboard.on('success', event => {
+    clearSelection()
+    temporarilyChangeTooltip(event.trigger, 'Copied!')
+  })
+
+  clipboard.on('error', event => {
+    temporarilyChangeTooltip(event.trigger, 'Failed to copy')
+  })
+
+  // Get rid of clipboard before the next page visit to avoid memory leak
+  document.addEventListener('turbolinks:before-visit', () =>
+    clipboard.destroy()
+  )
+}
+
+initFunction(addCopyButtonToCodeCells);
+</script>
+
+
+  <!-- Hide cell code -->
+  
+<script>
+/**
+Add buttons to hide code cells
+*/
+
+
+var setCodeCellVisibility = function(inputField, kind) {
+    // Update the image and class for hidden
+    var id = inputField.getAttribute('data-id');
+    var codeCell = document.querySelector(`#${id} div.highlight`);
+
+    if (kind === "visible") {
+        codeCell.classList.remove('hidden');
+        inputField.checked = true;
+    } else {
+        codeCell.classList.add('hidden');
+        inputField.checked = false;
+    }
+}
+
+var toggleCodeCellVisibility = function (event) {
+    // The label is clicked, and now we decide what to do based on the input field's clicked status
+    if (event.target.tagName === "LABEL") {
+        var inputField = event.target.previousElementSibling;
+    } else {
+        // It is the span inside the target
+        var inputField = event.target.parentElement.previousElementSibling;
+    }
+
+    if (inputField.checked === true) {
+        setCodeCellVisibility(inputField, "visible");
+    } else {
+        setCodeCellVisibility(inputField, "hidden");
+    }
+}
+
+
+// Button constructor
+const hideCodeButton = id => `<input class="hidebtn" type="checkbox" id="hidebtn${id}" data-id="${id}"><label title="Toggle cell" for="hidebtn${id}" class="plusminus"><span class="pm_h"></span><span class="pm_v"></span></label>`
+
+var addHideButton = function () {
+  // If a hide button is already added, don't add another
+  if (document.querySelector('div.hidecode input') !== null) {
+      return;
+  }
+
+  // Find the input cells and add a hide button
+  document.querySelectorAll('div.input_area').forEach(function (item, index) {
+    if (!item.classList.contains("hidecode")) {
+        // Skip the cell if it doesn't have a hidecode class
+        return;
+    }
+
+    const id = codeCellId(index)
+    item.setAttribute('id', id);
+    // Insert the button just inside the end of the next div
+    item.querySelector('div').insertAdjacentHTML('beforeend', hideCodeButton(id))
+
+    // Set up the visibility toggle
+    hideLink = document.querySelector(`#${id} div.highlight + input + label`);
+    hideLink.addEventListener('click', toggleCodeCellVisibility)
+  });
+}
+
+
+// Initialize the hide buttos
+var initHiddenCells = function () {
+    // Add hide buttons to the cells
+    addHideButton();
+
+    // Toggle the code cells that should be hidden
+    document.querySelectorAll('div.hidecode input').forEach(function (item) {
+        setCodeCellVisibility(item, 'hidden');
+        item.checked = true;
+    })
+}
+
+initFunction(initHiddenCells);
+
+</script>
+
+
+  <!-- Load custom website scripts -->
+  <script src="/python-general/assets/js/scripts.js" async></script>
+
+  <!-- Load custom user CSS and JS  -->
+  <script src="/python-general/assets/custom/custom.js" async></script>
+  <link rel="stylesheet" href="/python-general/assets/custom/custom.css">
+
+  <!-- Update interact links w/ REST param, is defined in includes so we can use templates -->
+  
+<script>
+/**
+  * To auto-embed hub URLs in interact links if given in a RESTful fashion
+ */
+
+function getJsonFromUrl(url) {
+  var query = url.split('?');
+  if (query.length < 2) {
+    // No queries so just return false
+    return false;
+  }
+  query = query[1];
+  // Collect REST params into a dictionary
+  var result = {};
+  query.split("&").forEach(function(part) {
+    var item = part.split("=");
+    result[item[0]] = decodeURIComponent(item[1]);
+  });
+  return result;
+}
+    
+function dict2param(dict) {
+    params = Object.keys(dict).map(function(k) {
+        return encodeURIComponent(k) + '=' + encodeURIComponent(dict[k])
+    });
+    return params.join('&')
+}
+
+// Parse a Binder URL, converting it to the string needed for JupyterHub
+function binder2Jupyterhub(url) {
+  newUrl = {};
+  parts = url.split('v2/gh/')[1];
+  // Grab the base repo information
+  repoinfo = parts.split('?')[0];
+  var [org, repo, ref] = repoinfo.split('/');
+  newUrl['repo'] = ['https://github.com', org, repo].join('/');
+  newUrl['branch'] = ref
+  // Grab extra parameters passed
+  params = getJsonFromUrl(url);
+  if (params['filepath'] !== undefined) {
+    newUrl['subPath'] = params['filepath']
+  }
+  return dict2param(newUrl);
+}
+
+// Filter out potentially unsafe characters to prevent xss
+function safeUrl(url)
+{
+   return String(encodeURIComponent(url))
+            .replace(/&/g, '&amp;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#39;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;');
+}
+
+function addParamToInternalLinks(hub) {
+  var links = document.querySelectorAll("a").forEach(function(link) {
+    var href = link.href;
+    // If the link is an internal link...
+    if (href.search("https://ncar-hackathons.github.io") !== -1 || href.startsWith('/') || href.search("127.0.0.1:") !== -1) {
+      // Assume we're an internal link, add the hub param to it
+      var params = getJsonFromUrl(href);
+      if (params !== false) {
+        // We have REST params, so append a new one
+        params['jupyterhub'] = hub;
+      } else {
+        // Create the REST params
+        params = {'jupyterhub': hub};
+      }
+      // Update the link
+      var newHref = href.split('?')[0] + '?' + dict2param(params);
+      link.setAttribute('href', decodeURIComponent(newHref));
+    }
+  });
+  return false;
+}
+
+
+// Update interact links
+function updateInteractLink() {
+    // hack to make this work since it expects a ? in the URL
+    rest = getJsonFromUrl("?" + location.search.substr(1));
+    jupyterHubUrl = rest['jupyterhub'];
+    var hubType = null;
+    var hubUrl = null;
+    if (jupyterHubUrl !== undefined) {
+      hubType = 'jupyterhub';
+      hubUrl = jupyterHubUrl;
+    }
+
+    if (hubType !== null) {
+      // Sanitize the hubUrl
+      hubUrl = safeUrl(hubUrl);
+
+      // Add HTTP text if omitted
+      if (hubUrl.indexOf('http') < 0) {hubUrl = 'http://' + hubUrl;}
+      var interactButtons = document.querySelectorAll("button.interact-button")
+      var lastButton = interactButtons[interactButtons.length-1];
+      var link = lastButton.parentElement;
+
+      // If we've already run this, skip the link updating
+      if (link.nextElementSibling !== null) {
+        return;
+      }
+
+      // Update the link and add context div
+      var href = link.getAttribute('href');
+      if (lastButton.id === 'interact-button-binder') {
+        // If binder links exist, we need to re-work them for jupyterhub
+        if (hubUrl.indexOf('http%3A%2F%2Flocalhost') > -1) {
+          // If localhost, assume we're working from a local Jupyter server and remove `/hub`
+          first = [hubUrl, 'git-sync'].join('/')
+        } else {
+          first = [hubUrl, 'hub', 'user-redirect', 'git-sync'].join('/')
+        }
+        href = first + '?' + binder2Jupyterhub(href);
+      } else {
+        // If interact button isn't binderhub, assume it's jupyterhub
+        // If JupyterHub links, we only need to replace the hub url
+        href = href.replace("", hubUrl);
+        if (hubUrl.indexOf('http%3A%2F%2Flocalhost') > -1) {
+          // Assume we're working from a local Jupyter server and remove `/hub`
+          href = href.replace("/hub/user-redirect", "");
+        }
+      }
+      link.setAttribute('href', decodeURIComponent(href));
+
+      // Add text after interact link saying where we're launching
+      hubUrlNoHttp = decodeURIComponent(hubUrl).replace('http://', '').replace('https://', '');
+      link.insertAdjacentHTML('afterend', '<div class="interact-context">on ' + hubUrlNoHttp + '</div>');
+
+      // Update internal links so we retain the hub url
+      addParamToInternalLinks(hubUrl);
+    }
+}
+
+runWhenDOMLoaded(updateInteractLink)
+document.addEventListener('turbolinks:load', updateInteractLink)
+</script>
+
+
+  <!-- Lunr search code - will only be executed on the /search page -->
+  <script src="/python-general/assets/js/lunr/lunr.min.js" type="text/javascript"></script>
+  <script>var initQuery = function() {
+  // See if we have a search box
+  var searchInput = document.querySelector('input#lunr_search');
+  if (searchInput === null) {
+    return;
+  }
+
+  // Function to parse our lunr cache
+  var idx = lunr(function () {
+    this.field('title')
+    this.field('excerpt')
+    this.field('categories')
+    this.field('tags')
+    this.ref('id')
+
+    this.pipeline.remove(lunr.trimmer)
+
+    for (var item in store) {
+      this.add({
+        title: store[item].title,
+        excerpt: store[item].excerpt,
+        categories: store[item].categories,
+        tags: store[item].tags,
+        id: item
+      })
+    }
+  });
+
+  // Run search upon keyup
+  searchInput.addEventListener('keyup', function () {
+    var resultdiv = document.querySelector('#results');
+    var query = document.querySelector("input#lunr_search").value.toLowerCase();
+    var result =
+      idx.query(function (q) {
+        query.split(lunr.tokenizer.separator).forEach(function (term) {
+          q.term(term, { boost: 100 })
+          if(query.lastIndexOf(" ") != query.length-1){
+            q.term(term, {  usePipeline: false, wildcard: lunr.Query.wildcard.TRAILING, boost: 10 })
+          }
+          if (term != ""){
+            q.term(term, {  usePipeline: false, editDistance: 1, boost: 1 })
+          }
+        })
+      });
+
+      // Empty the results div
+      while (resultdiv.firstChild) {
+        resultdiv.removeChild(resultdiv.firstChild);
+      }
+
+    resultdiv.insertAdjacentHTML('afterbegin', '<p class="results__found">'+result.length+' Result(s) found</p>');
+    for (var item in result) {
+      var ref = result[item].ref;
+      if(store[ref].teaser){
+        var searchitem =
+          '<div class="list__item">'+
+            '<article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">'+
+              '<h2 class="archive__item-title" itemprop="headline">'+
+                '<a href="'+store[ref].url+'" rel="permalink">'+store[ref].title+'</a>'+
+              '</h2>'+
+              '<div class="archive__item-teaser">'+
+                '<img src="'+store[ref].teaser+'" alt="">'+
+              '</div>'+
+              '<p class="archive__item-excerpt" itemprop="description">'+store[ref].excerpt.split(" ").splice(0,20).join(" ")+'...</p>'+
+            '</article>'+
+          '</div>';
+      }
+      else{
+    	  var searchitem =
+          '<div class="list__item">'+
+            '<article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">'+
+              '<h2 class="archive__item-title" itemprop="headline">'+
+                '<a href="'+store[ref].url+'" rel="permalink">'+store[ref].title+'</a>'+
+              '</h2>'+
+              '<p class="archive__item-excerpt" itemprop="description">'+store[ref].excerpt.split(" ").splice(0,20).join(" ")+'...</p>'+
+            '</article>'+
+          '</div>';
+      }
+      resultdiv.insertAdjacentHTML('beforeend', searchitem);
+    }
+  });
+};
+
+initFunction(initQuery);
+</script>
+</head>
+
+  <body>
+    <!-- .js-show-sidebar shows sidebar by default -->
+    <div id="js-textbook" class="c-textbook js-show-sidebar">
+      
+
+
+
+<nav id="js-sidebar" class="c-textbook__sidebar">
+  <a href="https://ncar-hackathons.github.io/python-general"><img src="/python-general/images/logo/ncar-mesa-lab.png" class="textbook_logo" id="sidebar-logo" data-turbolinks-permanent/></a>
+  <h2 class="c-sidebar__title">The Python General Guide</h2>
+  <ul class="c-sidebar__chapters">
+    
+      
+      
+
+      
+      
+
+      
+      
+      <li class="c-sidebar__chapter">
+        <a class="c-sidebar__entry c-sidebar__entry--active"
+          href="/python-general/intro.html"
+        >
+          
+          Home
+        </a>
+
+        
+      </li>
+
+      
+    
+      
+      
+        <li class="c-sidebar__chapter"><a class="c-sidebar__entry" href="/python-general/search.html">Search</a></li>
+        
+      
+      
+
+      
+      
+
+      
+      
+      <li class="c-sidebar__chapter">
+        <a class="c-sidebar__entry "
+          href="/python-general/introduction/intro.html"
+        >
+          
+          Getting Started with Python
+        </a>
+
+        
+
+          
+          
+          
+          
+
+          
+
+          <ul class="c-sidebar__sections ">
+            
+              
+              
+
+              <li class="c-sidebar__section">
+                <a class="c-sidebar__entry "
+                  href="/python-general/introduction/lexical_structure.html"
+                >
+                  
+                  Lexical Structure
+                </a>
+
+                
+                
+
+              </li>
+              
+            
+              
+              
+
+              <li class="c-sidebar__section">
+                <a class="c-sidebar__entry c-sidebar__entry--active"
+                  href="/python-general/introduction/basic_data_structures.html"
+                >
+                  
+                  Basic Data Structures
+                </a>
+
+                
+                
+
+              </li>
+              
+            
+              
+              
+
+              <li class="c-sidebar__section">
+                <a class="c-sidebar__entry "
+                  href="/python-general/introduction/basic_Input_and_Output.html"
+                >
+                  
+                  Basic Input and Output
+                </a>
+
+                
+                
+
+              </li>
+              
+            
+              
+              
+
+              <li class="c-sidebar__section">
+                <a class="c-sidebar__entry "
+                  href="/python-general/introduction/conditionals.html"
+                >
+                  
+                  Conditional Statements
+                </a>
+
+                
+                
+
+              </li>
+              
+            
+              
+              
+
+              <li class="c-sidebar__section">
+                <a class="c-sidebar__entry "
+                  href="/python-general/introduction/loops.html"
+                >
+                  
+                  Loops
+                </a>
+
+                
+                
+
+              </li>
+              
+            
+              
+              
+
+              <li class="c-sidebar__section">
+                <a class="c-sidebar__entry "
+                  href="/python-general/introduction/functions.html"
+                >
+                  
+                  Functions
+                </a>
+
+                
+                
+
+              </li>
+              
+            
+              
+              
+
+              <li class="c-sidebar__section">
+                <a class="c-sidebar__entry "
+                  href="/python-general/introduction/times_and_dates.html"
+                >
+                  
+                  Times and Dates
+                </a>
+
+                
+                
+
+              </li>
+              
+            
+              
+              
+
+              <li class="c-sidebar__section">
+                <a class="c-sidebar__entry "
+                  href="/python-general/introduction/whetting_your_appetite_for_python.html"
+                >
+                  
+                  Whetting Your Appetite for Python
+                </a>
+
+                
+                
+
+              </li>
+              
+            
+              
+              
+
+              <li class="c-sidebar__section">
+                <a class="c-sidebar__entry "
+                  href="/python-general/introduction/extra.html"
+                >
+                  
+                  Going Further
+                </a>
+
+                
+                
+
+              </li>
+              
+            
+          </ul>
+        
+      </li>
+
+      
+    
+  </ul>
+  <p class="sidebar_footer">Powered by <a href="https://github.com/jupyter/jupyter-book">Jupyter Book</a></p>
+</nav>
+
+      
+      <!-- Empty sidebar placeholder that we'll auto-fill with javascript -->
+      <aside class="sidebar__right">
+          <header><h4 class="nav__title"><i class="fa fa-list"></i>   On this page</h4></header>
+          <nav class="onthispage">
+          </nav>
+      </aside>
+      
+      <main class="c-textbook__page" tabindex="-1">
+          <div class="o-wrapper">
+            <div class="c-sidebar-toggle">
+  <!-- We show the sidebar by default so we use .is-active -->
+  <button
+    id="js-sidebar-toggle"
+    class="hamburger hamburger--arrowalt is-active"
+  >
+    <span class="hamburger-box">
+      <span class="hamburger-inner"></span>
+    </span>
+    <span class="c-sidebar-toggle__label">Toggle Sidebar</span>
+  </button>
+</div>
+
+            
+<div class="buttons">
+<a href="/python-general/content/introduction/basic_data_structures.ipynb" download>
+<button id="interact-button-download" class="interact-button">Download</button>
+</a>
+
+<button id="interact-button-thebelab" class="interact-button">Thebelab</button>
+
+
+
+
+
+
+
+
+
+<a href="https://binder.pangeo.io/v2/gh/ncar-hackathons/python-general/master?filepath=content%2Fintroduction%2Fbasic_data_structures.ipynb"><button class="interact-button" id="interact-button-binder"><img class="interact-button-logo" src="/python-general/assets/images/logo_binder.svg" alt="Interact" />Interact</button></a>
+
+
+</div>
+
+
+            <div class="c-textbook__content">
+              <h1 id="basic-data-structures">Basic Data Structures</h1>
+
+<h2 id="what-are-data-structures">What are Data Structures?</h2>
+
+<p>Imagine you want to plot monthly potential temperature from a CESM run on a bar graph. Your first step will be to put the potential temperature data inside a Python data structure. Data structures are how computer programs store information. This information can subsequently be processed, analyzed and visualized.</p>
+
+<p>There are many different types of data structures depending on the kind of data you wish to store. You will have to choose data structures that best meet your requirements for the problem you are trying to solve. Fortunately, Python as a <strong>“batteries-included”</strong> language gives you a practical choice of data structures to select from. We will do a minimal exploration of Python data structures; just enough to get you going. For a more complete treatment of Python data structures, see the <a href="https://docs.python.org/3/tutorial/datastructures.html">Data Structures</a> section in the Python documentation.</p>
+
+<h2 id="python-data-structures">Python Data Structures</h2>
+
+<p>First, scientific data can be large and complex and may require data structures appropriate for scientific programming. We cover Python for scientific data further along in the <a href="https://ncar-hackathons.github.io/scientific-computing">Python Scientific Computing Ecosystem</a> guide.</p>
+
+<p>This notebook covers basic Python data structures meant for general-purpose programming, necessary to write programs in any capacity. Choosing the right data structure for the problem you are targeting will help your programs run correctly and efficiently, and make them easier for others to understand.</p>
+
+<p>We will specifically examine three Python data structures: lists, tuples, both Python sequences, and dictionaries.</p>
+
+<h3 id="sequences">Sequences</h3>
+
+<p>Python offers several data structures to store sequences of information such as hourly mean sea level pressure readings from a weather station, or three-dimensional coordinates describing a location in a climate model. To accommodate storage of such data, Python has a few different choices. We will discuss two of them: <strong>lists</strong> and <strong>tuples</strong>.</p>
+
+<h4 id="list">List</h4>
+
+<ul>
+  <li>A Python list is a sequence of values that are usually the same kind of item.</li>
+  <li>They are ordered, which means items of a list stay in the order they are inserted in. - - They can contain strings, numbers, or more complex items.</li>
+  <li>Lists are mutable, which is a fancy way of saying they can be changed after they are created.</li>
+</ul>
+
+<p>Here is a Python list of synthetic yeraly average potential temperature (in celsius degree) data for 2000 thru 2009, and these values are assigned to the <code class="highlighter-rouge">T</code> variable.</p>
+
+<div class="cell code_cell">
+  <div class="input_area">
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">T</span> <span class="o">=</span> <span class="p">[</span><span class="mf">15.344799</span> <span class="p">,</span> <span class="mf">16.299318</span> <span class="p">,</span> <span class="mf">17.322786</span> <span class="p">,</span> <span class="mf">18.373438</span> <span class="p">,</span> <span class="mf">19.443617</span> <span class="p">,</span>
+        <span class="mf">20.552095</span> <span class="p">,</span> <span class="mf">21.70852</span>  <span class="p">,</span> <span class="mf">22.810867</span> <span class="p">,</span> <span class="mf">23.81051</span>  <span class="p">,</span> <span class="mf">24.661425</span> <span class="p">]</span>
+</code></pre></div>    </div>
+  </div>
+
+</div>
+
+<p>The list is demarcated with square brackets, the values are comma delimited and assigned to the <code class="highlighter-rouge">T</code> variable with the <code class="highlighter-rouge">=</code> assignment operator.</p>
+
+<h5 id="what-can-you-do-with-a-list">What Can You Do with a List?</h5>
+
+<p>Python has a set of <a href="https://docs.python.org/3/tutorial/datastructures.html">built-in methods</a> that you can use on lists</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Method</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">append()</code></td>
+      <td>Adds an element at the end of the list</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">clear()</code></td>
+      <td>Removes all the elements from the list</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">copy()</code></td>
+      <td>Returns a copy of the list</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">count()</code></td>
+      <td>Returns the number of elements with the specified value</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">extend()</code></td>
+      <td>Add the elements of a list (or any iterable), to the end of the current list</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">index()</code></td>
+      <td>Returns the index of the first element with the specified value</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">insert()</code></td>
+      <td>Adds an element at the specified position</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">pop()</code></td>
+      <td>Removes the element at the specified position</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">remove()</code></td>
+      <td>Removes the first item with the specified value</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">reverse()</code></td>
+      <td>Reverses the order of the list</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">sort()</code></td>
+      <td>Sorts the list</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>We will examine just a few examples.</p>
+
+<ul>
+  <li><strong>Add an Item to the End of teh List</strong></li>
+</ul>
+
+<p>Continuing with our list of potential temperatures, we want to add a new value prediction for the year of 2010 to the <code class="highlighter-rouge">T</code> list. We can use the append method to add an item to the end of the list. (A method is like a function, but denoted with the . notation after the variable it is acting on. Instead of <code class="highlighter-rouge">append(T, 21.589)</code> you have <code class="highlighter-rouge">T.append(21.589)</code>.)</p>
+
+<div class="cell code_cell">
+  <div class="input_area">
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">T</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mf">21.589</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
+</code></pre></div>    </div>
+  </div>
+
+  <div class="output_wrapper">
+    <div class="output_subarea">
+      <div class="output_stream highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[15.344799, 16.299318, 17.322786, 18.373438, 19.443617, 20.552095, 21.70852, 22.810867, 23.81051, 24.661425, 21.589, 21.589]
+</code></pre></div>      </div>
+    </div>
+  </div>
+</div>
+
+<ul>
+  <li><strong>Add an Item to the Front of the List</strong></li>
+</ul>
+
+<p>Let’s say we want to add value of the year <code class="highlighter-rouge">1999</code> to the list. We can use the insert method, to add an item to the list at the location of our choosing, in this case location or index 0. (Python sequences start at index 0, not 1 like Matlab or Fortran.)</p>
+
+<div class="cell code_cell">
+  <div class="input_area">
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">T</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">14.0</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
+</code></pre></div>    </div>
+  </div>
+
+  <div class="output_wrapper">
+    <div class="output_subarea">
+      <div class="output_stream highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[14.0, 15.344799, 16.299318, 17.322786, 18.373438, 19.443617, 20.552095, 21.70852, 22.810867, 23.81051, 24.661425, 21.589, 21.589]
+</code></pre></div>      </div>
+    </div>
+  </div>
+</div>
+
+<ul>
+  <li><strong>Change a Value in the List</strong></li>
+</ul>
+
+<p>Let’s say that we want to update the potential temperature of the year <code class="highlighter-rouge">2002</code> to a value of <code class="highlighter-rouge">16.0</code>. We will access the 3rd value on the list with the square bracket notation.</p>
+
+<div class="cell code_cell">
+  <div class="input_area">
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">T</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mf">16.0</span> <span class="c"># Remember, 3rd item at index 2 because we start at 0, not 1</span>
+<span class="k">print</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
+</code></pre></div>    </div>
+  </div>
+
+  <div class="output_wrapper">
+    <div class="output_subarea">
+      <div class="output_stream highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[14.0, 15.344799, 16.0, 17.322786, 18.373438, 19.443617, 20.552095, 21.70852, 22.810867, 23.81051, 24.661425, 21.589]
+</code></pre></div>      </div>
+    </div>
+  </div>
+</div>
+
+<h4 id="tuples">Tuples</h4>
+
+<p>Tuples are also ordered sequences of information but they are immutable, which means once they are created, they cannot change. Immutability may seem like a strange concept given that computer programs are constantly manipulating and changing data, but your program becomes easier to understand when you can guarantee something is unchanging. Tuples tend to contain related items such as an x and y locations in a Cartesian plane, or an author, title and journal in a scholarly citation.</p>
+
+<p>Here we define a tuple representing a geographic coordinate expressed latitude, longitude and elevation in meters:</p>
+
+<div class="cell code_cell">
+  <div class="input_area">
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">location</span> <span class="o">=</span> <span class="p">(</span><span class="mf">40.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">105.3</span><span class="p">,</span> <span class="mf">1655.1</span><span class="p">)</span>
+</code></pre></div>    </div>
+  </div>
+
+</div>
+
+<p>The tuple definition is demarcated with parentheses, the values are comma delimited and assigned to the <code class="highlighter-rouge">location</code> variable with the <code class="highlighter-rouge">=</code> assignment operator. Because tuples are immutable, unlike lists, there are no operations to change them in-place.</p>
+
+<h5 id="built-in-functions-for-lists-and-tuples">Built-in Functions for Lists and Tuples</h5>
+
+<p>There are several <a href="https://docs.python.org/3/library/functions.html">built-in Python functions</a> to examine both lists and tuples. Let’s look at a few. We can find out the length of the tuple or list with the built-in Python len function:</p>
+
+<div class="cell code_cell">
+  <div class="input_area">
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">T</span><span class="p">))</span>
+</code></pre></div>    </div>
+  </div>
+
+  <div class="output_wrapper">
+    <div class="output_subarea">
+      <div class="output_stream highlighter-rouge"><div class="highlight"><pre class="highlight"><code>12
+</code></pre></div>      </div>
+    </div>
+  </div>
+</div>
+
+<p>We can also discover the min and max of a sequence:</p>
+
+<div class="cell code_cell">
+  <div class="input_area">
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">T</span><span class="p">),</span> <span class="nb">max</span><span class="p">(</span><span class="n">T</span><span class="p">))</span>
+</code></pre></div>    </div>
+  </div>
+
+  <div class="output_wrapper">
+    <div class="output_subarea">
+      <div class="output_stream highlighter-rouge"><div class="highlight"><pre class="highlight"><code>14.0 24.661425
+</code></pre></div>      </div>
+    </div>
+  </div>
+</div>
+
+<h4 id="accessing-data-from-lists-and-tuples">Accessing Data from Lists and Tuples</h4>
+
+<p>Python offers a rich variety of options to access values inside lists and tuples, and you will want to eventually understand <a href="https://docs.python.org/3/reference/datamodel.html#the-standard-type-hierarchy">indexing, slicing and striding expressions</a>. For brevity, we will only examine a couple of examples to get values inside sequences. Again, note valid indices on lists and tuples start at 0 and end at size of list - 1.</p>
+
+<h5 id="indexing">Indexing</h5>
+
+<p>Individual items inside the list can be obtained with the square bracket notation. Here will assign a couple of values from inside the list to two variables: <code class="highlighter-rouge">T_1999</code> and <code class="highlighter-rouge">T_2010</code>. We will the print the values with <a href="https://docs.python.org/3/reference/lexical_analysis.html#f-strings">Python 3 formatted string literals</a>.</p>
+
+<div class="cell code_cell">
+  <div class="input_area">
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">T_1999</span> <span class="o">=</span> <span class="n">T</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="c"># index 0 at 1999</span>
+<span class="n">T_2010</span> <span class="o">=</span> <span class="n">T</span><span class="p">[</span><span class="mi">11</span><span class="p">]</span> <span class="c"># index 11 at 2010</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s">'Yearly Average Potential Temperature in 1999 was {T_1999} and in 2010 was {T_2010}'</span><span class="p">)</span>
+</code></pre></div>    </div>
+  </div>
+
+  <div class="output_wrapper">
+    <div class="output_subarea">
+      <div class="output_stream highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Yearly Average Potential Temperature in 1999 was 14.0 and in 2010 was 21.589
+</code></pre></div>      </div>
+    </div>
+  </div>
+</div>
+
+<h5 id="multiple-assignments-for-unpacking-tuples">Multiple Assignments for Unpacking Tuples</h5>
+
+<p>Python sequences also allow for multiple assignments for unpacking. This trick is quite handy for tuples:</p>
+
+<div class="cell code_cell">
+  <div class="input_area">
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">lat</span><span class="p">,</span> <span class="n">lon</span><span class="p">,</span> <span class="n">elev</span> <span class="o">=</span> <span class="n">location</span>  <span class="c"># unpacking the tuple</span>
+<span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s">'lat {lat}, lon {lon}, elevation {elev}'</span><span class="p">)</span>
+</code></pre></div>    </div>
+  </div>
+
+  <div class="output_wrapper">
+    <div class="output_subarea">
+      <div class="output_stream highlighter-rouge"><div class="highlight"><pre class="highlight"><code>lat 40.0, lon -105.3, elevation 1655.1
+</code></pre></div>      </div>
+    </div>
+  </div>
+</div>
+
+<h3 id="dictionaries">Dictionaries</h3>
+
+<p>Dictionary data structures are easy to understand because you are already familiar with them. When you look up a word definition in a language dictionary or use an index in the back of a book, you are using a dictionary data structure. Dictionaries are composed of key and value pairs. For example,</p>
+
+<blockquote>
+  <p>Potential temperature -  the temperature that a parcel of fluid at pressure $P$ would attain if adiabatically brought to a standard reference pressure ${P_0}$, usually 1000 millibars.</p>
+</blockquote>
+
+<p>Here, the key is “Potential temperature” and the value is “the temperature that a parcel of fluid at pressure $P$ would attain if adiabatically brought to a standard reference pressure ${P_0}$, usually 1000 millibars.”</p>
+
+<p>Let’s build upon the earlier tuple example by defining a dictionary of ensemble runs. The keys are strings representing the ensemble identifier, the values are tuples representing the values of potential temperature in celcius degrees.</p>
+
+<div class="cell code_cell">
+  <div class="input_area">
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">ensembles</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">'member_1'</span><span class="p">:</span> <span class="p">(</span><span class="mf">10.0</span><span class="p">,</span> <span class="mf">12.89</span><span class="p">,</span> <span class="mi">13</span><span class="p">),</span>
+    <span class="s">'member_2'</span><span class="p">:</span> <span class="p">(</span><span class="mf">11.2</span><span class="p">,</span> <span class="mf">12.1</span><span class="p">,</span> <span class="mf">12.5</span><span class="p">),</span>
+    <span class="s">'member_3'</span><span class="p">:</span> <span class="p">(</span><span class="mf">10.5</span><span class="p">,</span> <span class="mf">11.9</span><span class="p">,</span> <span class="mi">14</span><span class="p">)}</span>
+</code></pre></div>    </div>
+  </div>
+
+</div>
+
+<p>Unlike lists and tuples, dictionaries are unordered; entries in a dictionary are not in the order they are inserted in and you cannot rely on any predictable ordering. This is not a problem as you will be using Python dictionary operations to look up the information contained within the dictionary.</p>
+
+<h5 id="what-can-you-do-with-a-dictionary">What Can You Do with a Dictionary?</h5>
+
+<p>Python has a set of built-in methods that you can use on dictionaries:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Method</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">clear()</code></td>
+      <td>Removes all the elements from the dictionary</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">copy()</code></td>
+      <td>Returns a copy of the dictionary</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">fromkeys()</code></td>
+      <td>Returns a dictionary with the specified keys and values</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">get()</code></td>
+      <td>Returns the value of the specified key</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">items()</code></td>
+      <td>Returns a list containing a tuple for each key value pair</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">keys()</code></td>
+      <td>Returns a list containing the dictionary’s keys</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">pop()</code></td>
+      <td>Removes the element with the specified key</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">popitem()</code></td>
+      <td>Removes the last inserted key-value pair</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">setdefault()</code></td>
+      <td>Returns the value of the specified key. If the key does not exist: insert the key, with the specified value</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">update()</code></td>
+      <td>Updates the dictionary with the specified key-value pairs</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">values()</code></td>
+      <td>Returns a list of all the values in the dictionary</td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li><strong>Look up a Value in a Dictionary</strong></li>
+</ul>
+
+<p>Let’s look up the first ensemble memeber <code class="highlighter-rouge">member_1</code>.</p>
+
+<div class="cell code_cell">
+  <div class="input_area">
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">ensembles</span><span class="p">[</span><span class="s">'member_1'</span><span class="p">])</span>
+</code></pre></div>    </div>
+  </div>
+
+  <div class="output_wrapper">
+    <div class="output_subarea">
+      <div class="output_stream highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(10.0, 12.89, 13)
+</code></pre></div>      </div>
+    </div>
+  </div>
+</div>
+
+<ul>
+  <li><strong>Add a Value to a Dictionary</strong></li>
+</ul>
+
+<p>Let’s add a fourth ensemble member <code class="highlighter-rouge">member_4</code> to our <code class="highlighter-rouge">ensembles</code> dictionary:</p>
+
+<div class="cell code_cell">
+  <div class="input_area">
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">ensembles</span><span class="p">[</span><span class="s">'member_4'</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mf">13.0</span><span class="p">,</span> <span class="mf">10.7</span><span class="p">,</span> <span class="mf">12.8</span><span class="p">)</span>
+</code></pre></div>    </div>
+  </div>
+
+</div>
+
+<div class="cell code_cell">
+  <div class="input_area">
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">ensembles</span><span class="p">)</span>
+</code></pre></div>    </div>
+  </div>
+
+  <div class="output_wrapper">
+    <div class="output_subarea">
+      <div class="output_stream highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{'member_1': (10.0, 12.89, 13), 'member_2': (11.2, 12.1, 12.5), 'member_3': (10.5, 11.9, 14), 'member_4': (13.0, 10.7, 12.8)}
+</code></pre></div>      </div>
+    </div>
+  </div>
+</div>
+
+<h2 id="going-further">Going Further</h2>
+
+<p>There are many topics concerning Python data structures that we did not cover in the interest of brevity. We encourage you to research more elaborate <a href="https://docs.python.org/3/reference/datamodel.html#the-standard-type-hierarchy">indexing, slicing and striding expressions</a>.</p>
+
+<p>Also, we did not cover <a href="https://docs.python.org/3/tutorial/datastructures.html#sets">Sets</a>, which is a data structure composed of unique, unordered values similar to keys in a dictionary data structure.</p>
+
+<p>There are several valuable built-in Python functions that merit study: <a href="https://docs.python.org/3/library/functions.html#filter">filter()</a>, <a href="https://docs.python.org/3/library/functions.html#map">map()</a>, <a href="https://docs.python.org/3/library/functions.html#sorted">sorted()</a> functions to name a few. Lastly, in the “Flow Control” notebook, we will examine Python list comprehension to process information inside of sequences and dictionaries.</p>
+
+              <nav class="c-page__nav">
+  
+    
+    <a id="js-page__nav__prev" class="c-page__nav__prev" href="/python-general/introduction/lexical_structure">
+      〈 <span class="u-margin-right-tiny"></span> Lexical Structure
+    </a>
+  
+
+  
+    
+    <a id="js-page__nav__next" class="c-page__nav__next" href="/python-general/introduction/basic_Input_and_Output">
+      Basic Input and Output <span class="u-margin-right-tiny"></span> 〉
+    </a>
+  
+</nav>
+
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+  </body>
+</html>

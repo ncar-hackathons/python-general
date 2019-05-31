@@ -1,0 +1,1199 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-138446982-4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-138446982-4');
+</script>
+
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,minimum-scale=1">
+
+  <title>Times and Dates</title>
+  <meta name="description" content="Times and DatesTime is an essential component of nearly all geoscience data. Timescales span orders of magnitude from microseconds for lightning, hours for a...">
+
+  <link rel="canonical" href="https://ncar-hackathons.github.io/python-general/introduction/times_and_dates.html">
+  <link rel="alternate" type="application/rss+xml" title="The Python General Guide" href="https://ncar-hackathons.github.io/python-general/feed.xml">
+
+  <meta property="og:url"         content="https://ncar-hackathons.github.io/python-general/introduction/times_and_dates.html" />
+<meta property="og:type"        content="article" />
+<meta property="og:title"       content="Times and Dates" />
+<meta property="og:description" content="Times and DatesTime is an essential component of nearly all geoscience data. Timescales span orders of magnitude from microseconds for lightning, hours for a..." />
+<meta property="og:image"       content="" />
+
+
+  <script type="application/ld+json">
+  {
+  "@context": "http://schema.org",
+  "@type": "NewsArticle",
+  "mainEntityOfPage":
+    "https://ncar-hackathons.github.io/python-general/introduction/times_and_dates.html",
+  "headline":
+    "Times and Dates",
+  "datePublished":
+    "2019-05-31T17:47:38+00:00",
+  "dateModified":
+    "2019-05-31T17:47:38+00:00",
+  "description":
+    "Times and DatesTime is an essential component of nearly all geoscience data. Timescales span orders of magnitude from microseconds for lightning, hours for a...",
+  "author": {
+    "@type": "Person",
+    "name": "The XDev Team"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Data 100 at UC Berkeley",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://ncar-hackathons.github.io/python-general",
+      "width": 60,
+      "height": 60
+    }
+  },
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://ncar-hackathons.github.io/python-general",
+    "height": 60,
+    "width": 60
+  }
+}
+
+  </script>
+  <link rel="stylesheet" href="/python-general/assets/css/styles.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css ">
+  <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png">
+
+  <!-- <link rel="manifest" href="/manifest.json"> -->
+  <!-- <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#efae0a"> -->
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="msapplication-TileImage" content="/mstile-144x144.png">
+  <meta name="theme-color" content="#233947">
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" type="image/x-icon" href="/python-general/images/logo/favicon.ico">
+
+  <!-- MathJax Config -->
+  <!-- Allow inline math using $ and automatically break long math lines -->
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+        processEscapes: true,
+        processEnvironments: true
+    },
+    CommonHTML: {
+        linebreaks: {
+            automatic: true,
+        },
+    },
+});
+</script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_CHTML' async></script>
+
+  <!-- DOM updating function -->
+  <script>
+const runWhenDOMLoaded = cb => {
+  if (document.readyState != 'loading') {
+    cb()
+  } else if (document.addEventListener) {
+    document.addEventListener('DOMContentLoaded', cb)
+  } else {
+    document.attachEvent('onreadystatechange', function() {
+      if (document.readyState == 'complete') cb()
+    })
+  }
+}
+
+// Helper function to init things quickly
+initFunction = function(myfunc) {
+  runWhenDOMLoaded(myfunc);
+  document.addEventListener('turbolinks:load', myfunc);
+};
+</script>
+
+  <!-- Define some javascript variables that will be useful in other javascript -->
+  <script>
+    const site_basename = '/python-general';
+  </script>
+
+  <!-- Add AnchorJS to let headers be linked -->
+  <script src="/python-general/assets/js/anchor.min.js"  type="text/javascript"></script>
+  <script>
+
+initFunction(function () {
+    anchors.add("main h1, main h2, main h3, main h4")
+});
+
+</script>
+
+  <!-- Include Turbolinks to make page loads fast -->
+  <!-- https://github.com/turbolinks/turbolinks -->
+  <script src="/python-general/assets/js/turbolinks.js" async></script>
+  <meta name="turbolinks-cache-control" content="no-cache">
+
+  <!-- Load nbinteract for widgets -->
+  
+
+  <!-- Load Thebelab for interactive widgets -->
+  <!-- Include Thebelab for interactive code if it's enabled -->
+
+
+<!-- Display Thebelab button in each code cell -->
+<script>
+/**
+ * Set up thebelab button for code blocks
+ */
+
+const thebelabCellButton = id =>
+  `<a id="thebelab-cell-button-${id}" class="btn thebebtn o-tooltip--left" data-tooltip="Interactive Mode">
+    <img src="/python-general/assets/images/edit-button.svg" alt="Start interactive mode">
+  </a>`
+
+
+const addThebelabButtonToCodeCells =  () => {
+
+  const codeCells = document.querySelectorAll('div.input_area > div.highlighter-rouge:not(.output) pre')
+  codeCells.forEach((codeCell, index) => {
+    const id = codeCellId(index)
+    codeCell.setAttribute('id', id)
+    if (document.getElementById("thebelab-cell-button-" + id) == null) {
+      codeCell.insertAdjacentHTML('afterend', thebelabCellButton(id));
+    }
+  })
+}
+
+initFunction(addThebelabButtonToCodeCells);
+</script>
+
+
+
+<script type="text/x-thebe-config">
+    {
+      requestKernel: true,
+      binderOptions: {
+        repo: 'ncar-hackathons/python-general',
+        ref: 'master',
+      },
+      codeMirrorConfig: {
+        theme: "abcdef"
+      },
+      kernelOptions: {
+        name: 'python3',
+      }
+    }
+</script>
+<script src="https://unpkg.com/thebelab@0.4.0/lib/index.js"></script>
+<script>
+    /**
+     * Add attributes to Thebelab blocks
+     */
+
+    const initThebelab = () => {
+        const addThebelabToCodeCells = () => {
+            console.log("Adding thebelab to code cells...");
+            // If Thebelab hasn't loaded, wait a bit and try again. This
+            // happens because we load ClipboardJS asynchronously.
+            if (window.thebelab === undefined) {
+                setTimeout(addThebelabToCodeCells, 250)
+            return
+            }
+
+            // If we already detect a Thebelab cell, don't re-run
+            if (document.querySelectorAll('div.thebelab-cell').length > 0) {
+                return;
+            }
+
+            // Find all code cells, replace with Thebelab interactive code cells
+            const codeCells = document.querySelectorAll('.input_area pre')
+            codeCells.forEach((codeCell, index) => {
+                const id = codeCellId(index)
+                codeCell.setAttribute('data-executable', 'true')
+
+                // Figure out the language it uses and add this too
+                var parentDiv = codeCell.parentElement.parentElement;
+                var arrayLength = parentDiv.classList.length;
+                for (var ii = 0; ii < arrayLength; ii++) {
+                    var parts = parentDiv.classList[ii].split('language-');
+                    if (parts.length === 2) {
+                        // If found, assign dataLanguage and break the loop
+                        var dataLanguage = parts[1];
+                        break;
+                    }
+                }
+                codeCell.setAttribute('data-language', dataLanguage)
+
+                // If the code cell is hidden, show it
+                var inputCheckbox = document.querySelector(`input#hidebtn${codeCell.id}`);
+                if (inputCheckbox !== null) {
+                    setCodeCellVisibility(inputCheckbox, 'visible');
+                }
+            });
+
+            // Remove the event listener from the page so keyboard press doesn't
+            // Change page
+            document.removeEventListener('keydown', initPageNav)
+            keyboardListener = false;
+
+            // Init thebelab
+            thebelab.bootstrap();
+
+            // Remove copy buttons since they won't work anymore
+            const copyAndThebeButtons = document.querySelectorAll('.copybtn, .thebebtn')
+            copyAndThebeButtons.forEach((button, index) => {
+                button.remove();
+            });
+
+            // Remove outputs since they'll be stale
+            const outputs = document.querySelectorAll('.output *, .output')
+            outputs.forEach((output, index) => {
+                output.remove();
+            });
+        }
+
+        // Add event listener for the function to modify code cells
+        const thebelabButtons = document.querySelectorAll('[id^=thebelab], [id$=thebelab]')
+        thebelabButtons.forEach((thebelabButton,index) => {
+            if (thebelabButton === null) {
+                setTimeout(initThebelab, 250)
+                return
+            };
+            thebelabButton.addEventListener('click', addThebelabToCodeCells);
+        });
+    }
+
+    // Initialize Thebelab
+    initFunction(initThebelab);
+</script>
+
+
+
+  <!-- Load the auto-generating TOC -->
+  <script src="/python-general/assets/js/tocbot.min.js"  type="text/javascript"></script>
+  <script>
+var initToc = function () {
+  tocbot.init({
+    tocSelector: 'nav.onthispage',
+    contentSelector: '.c-textbook__content',
+    headingSelector: 'h2, h3',
+    orderedList: false,
+    collapseDepth: 6,
+    listClass: 'toc__menu',
+    activeListItemClass: "",  // Not using
+    activeLinkClass: "", // Not using
+  });
+  tocbot.refresh();
+}
+initFunction(initToc);
+</script>
+
+  <!-- Google analytics -->
+  <script src="/python-general/assets/js/ga.js" async></script>
+
+  <!-- Clipboard copy button -->
+  <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" async></script>
+
+  <!-- Load JS that depends on site variables -->
+  <script>
+/**
+ * Set up copy/paste for code blocks
+ */
+const codeCellId = index => `codecell${index}`
+
+const clipboardButton = id =>
+  `<a id="copy-button-${id}" class="btn copybtn o-tooltip--left" data-tooltip="Copy" data-clipboard-target="#${id}">
+    <img src="/python-general/assets/images/copy-button.svg" alt="Copy to clipboard">
+  </a>`
+
+// Clears selected text since ClipboardJS will select the text when copying
+const clearSelection = () => {
+  if (window.getSelection) {
+    window.getSelection().removeAllRanges()
+  } else if (document.selection) {
+    document.selection.empty()
+  }
+}
+
+// Changes tooltip text for two seconds, then changes it back
+const temporarilyChangeTooltip = (el, newText) => {
+  const oldText = el.getAttribute('data-tooltip')
+  el.setAttribute('data-tooltip', newText)
+  setTimeout(() => el.setAttribute('data-tooltip', oldText), 2000)
+}
+
+const addCopyButtonToCodeCells = () => {
+  // If ClipboardJS hasn't loaded, wait a bit and try again. This
+  // happens because we load ClipboardJS asynchronously.
+  if (window.ClipboardJS === undefined) {
+    setTimeout(addCopyButtonToCodeCells, 250)
+    return
+  }
+
+  const codeCells = document.querySelectorAll('div.c-textbook__content > div.highlighter-rouge > div.highlight > pre, div.input_area pre')
+  codeCells.forEach((codeCell, index) => {
+    const id = codeCellId(index)
+    codeCell.setAttribute('id', id)
+    if (document.getElementById("copy-button" + id) == null) {
+      codeCell.insertAdjacentHTML('afterend', clipboardButton(id));
+    }
+  })
+
+  const clipboard = new ClipboardJS('.copybtn')
+  clipboard.on('success', event => {
+    clearSelection()
+    temporarilyChangeTooltip(event.trigger, 'Copied!')
+  })
+
+  clipboard.on('error', event => {
+    temporarilyChangeTooltip(event.trigger, 'Failed to copy')
+  })
+
+  // Get rid of clipboard before the next page visit to avoid memory leak
+  document.addEventListener('turbolinks:before-visit', () =>
+    clipboard.destroy()
+  )
+}
+
+initFunction(addCopyButtonToCodeCells);
+</script>
+
+
+  <!-- Hide cell code -->
+  
+<script>
+/**
+Add buttons to hide code cells
+*/
+
+
+var setCodeCellVisibility = function(inputField, kind) {
+    // Update the image and class for hidden
+    var id = inputField.getAttribute('data-id');
+    var codeCell = document.querySelector(`#${id} div.highlight`);
+
+    if (kind === "visible") {
+        codeCell.classList.remove('hidden');
+        inputField.checked = true;
+    } else {
+        codeCell.classList.add('hidden');
+        inputField.checked = false;
+    }
+}
+
+var toggleCodeCellVisibility = function (event) {
+    // The label is clicked, and now we decide what to do based on the input field's clicked status
+    if (event.target.tagName === "LABEL") {
+        var inputField = event.target.previousElementSibling;
+    } else {
+        // It is the span inside the target
+        var inputField = event.target.parentElement.previousElementSibling;
+    }
+
+    if (inputField.checked === true) {
+        setCodeCellVisibility(inputField, "visible");
+    } else {
+        setCodeCellVisibility(inputField, "hidden");
+    }
+}
+
+
+// Button constructor
+const hideCodeButton = id => `<input class="hidebtn" type="checkbox" id="hidebtn${id}" data-id="${id}"><label title="Toggle cell" for="hidebtn${id}" class="plusminus"><span class="pm_h"></span><span class="pm_v"></span></label>`
+
+var addHideButton = function () {
+  // If a hide button is already added, don't add another
+  if (document.querySelector('div.hidecode input') !== null) {
+      return;
+  }
+
+  // Find the input cells and add a hide button
+  document.querySelectorAll('div.input_area').forEach(function (item, index) {
+    if (!item.classList.contains("hidecode")) {
+        // Skip the cell if it doesn't have a hidecode class
+        return;
+    }
+
+    const id = codeCellId(index)
+    item.setAttribute('id', id);
+    // Insert the button just inside the end of the next div
+    item.querySelector('div').insertAdjacentHTML('beforeend', hideCodeButton(id))
+
+    // Set up the visibility toggle
+    hideLink = document.querySelector(`#${id} div.highlight + input + label`);
+    hideLink.addEventListener('click', toggleCodeCellVisibility)
+  });
+}
+
+
+// Initialize the hide buttos
+var initHiddenCells = function () {
+    // Add hide buttons to the cells
+    addHideButton();
+
+    // Toggle the code cells that should be hidden
+    document.querySelectorAll('div.hidecode input').forEach(function (item) {
+        setCodeCellVisibility(item, 'hidden');
+        item.checked = true;
+    })
+}
+
+initFunction(initHiddenCells);
+
+</script>
+
+
+  <!-- Load custom website scripts -->
+  <script src="/python-general/assets/js/scripts.js" async></script>
+
+  <!-- Load custom user CSS and JS  -->
+  <script src="/python-general/assets/custom/custom.js" async></script>
+  <link rel="stylesheet" href="/python-general/assets/custom/custom.css">
+
+  <!-- Update interact links w/ REST param, is defined in includes so we can use templates -->
+  
+<script>
+/**
+  * To auto-embed hub URLs in interact links if given in a RESTful fashion
+ */
+
+function getJsonFromUrl(url) {
+  var query = url.split('?');
+  if (query.length < 2) {
+    // No queries so just return false
+    return false;
+  }
+  query = query[1];
+  // Collect REST params into a dictionary
+  var result = {};
+  query.split("&").forEach(function(part) {
+    var item = part.split("=");
+    result[item[0]] = decodeURIComponent(item[1]);
+  });
+  return result;
+}
+    
+function dict2param(dict) {
+    params = Object.keys(dict).map(function(k) {
+        return encodeURIComponent(k) + '=' + encodeURIComponent(dict[k])
+    });
+    return params.join('&')
+}
+
+// Parse a Binder URL, converting it to the string needed for JupyterHub
+function binder2Jupyterhub(url) {
+  newUrl = {};
+  parts = url.split('v2/gh/')[1];
+  // Grab the base repo information
+  repoinfo = parts.split('?')[0];
+  var [org, repo, ref] = repoinfo.split('/');
+  newUrl['repo'] = ['https://github.com', org, repo].join('/');
+  newUrl['branch'] = ref
+  // Grab extra parameters passed
+  params = getJsonFromUrl(url);
+  if (params['filepath'] !== undefined) {
+    newUrl['subPath'] = params['filepath']
+  }
+  return dict2param(newUrl);
+}
+
+// Filter out potentially unsafe characters to prevent xss
+function safeUrl(url)
+{
+   return String(encodeURIComponent(url))
+            .replace(/&/g, '&amp;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#39;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;');
+}
+
+function addParamToInternalLinks(hub) {
+  var links = document.querySelectorAll("a").forEach(function(link) {
+    var href = link.href;
+    // If the link is an internal link...
+    if (href.search("https://ncar-hackathons.github.io") !== -1 || href.startsWith('/') || href.search("127.0.0.1:") !== -1) {
+      // Assume we're an internal link, add the hub param to it
+      var params = getJsonFromUrl(href);
+      if (params !== false) {
+        // We have REST params, so append a new one
+        params['jupyterhub'] = hub;
+      } else {
+        // Create the REST params
+        params = {'jupyterhub': hub};
+      }
+      // Update the link
+      var newHref = href.split('?')[0] + '?' + dict2param(params);
+      link.setAttribute('href', decodeURIComponent(newHref));
+    }
+  });
+  return false;
+}
+
+
+// Update interact links
+function updateInteractLink() {
+    // hack to make this work since it expects a ? in the URL
+    rest = getJsonFromUrl("?" + location.search.substr(1));
+    jupyterHubUrl = rest['jupyterhub'];
+    var hubType = null;
+    var hubUrl = null;
+    if (jupyterHubUrl !== undefined) {
+      hubType = 'jupyterhub';
+      hubUrl = jupyterHubUrl;
+    }
+
+    if (hubType !== null) {
+      // Sanitize the hubUrl
+      hubUrl = safeUrl(hubUrl);
+
+      // Add HTTP text if omitted
+      if (hubUrl.indexOf('http') < 0) {hubUrl = 'http://' + hubUrl;}
+      var interactButtons = document.querySelectorAll("button.interact-button")
+      var lastButton = interactButtons[interactButtons.length-1];
+      var link = lastButton.parentElement;
+
+      // If we've already run this, skip the link updating
+      if (link.nextElementSibling !== null) {
+        return;
+      }
+
+      // Update the link and add context div
+      var href = link.getAttribute('href');
+      if (lastButton.id === 'interact-button-binder') {
+        // If binder links exist, we need to re-work them for jupyterhub
+        if (hubUrl.indexOf('http%3A%2F%2Flocalhost') > -1) {
+          // If localhost, assume we're working from a local Jupyter server and remove `/hub`
+          first = [hubUrl, 'git-sync'].join('/')
+        } else {
+          first = [hubUrl, 'hub', 'user-redirect', 'git-sync'].join('/')
+        }
+        href = first + '?' + binder2Jupyterhub(href);
+      } else {
+        // If interact button isn't binderhub, assume it's jupyterhub
+        // If JupyterHub links, we only need to replace the hub url
+        href = href.replace("", hubUrl);
+        if (hubUrl.indexOf('http%3A%2F%2Flocalhost') > -1) {
+          // Assume we're working from a local Jupyter server and remove `/hub`
+          href = href.replace("/hub/user-redirect", "");
+        }
+      }
+      link.setAttribute('href', decodeURIComponent(href));
+
+      // Add text after interact link saying where we're launching
+      hubUrlNoHttp = decodeURIComponent(hubUrl).replace('http://', '').replace('https://', '');
+      link.insertAdjacentHTML('afterend', '<div class="interact-context">on ' + hubUrlNoHttp + '</div>');
+
+      // Update internal links so we retain the hub url
+      addParamToInternalLinks(hubUrl);
+    }
+}
+
+runWhenDOMLoaded(updateInteractLink)
+document.addEventListener('turbolinks:load', updateInteractLink)
+</script>
+
+
+  <!-- Lunr search code - will only be executed on the /search page -->
+  <script src="/python-general/assets/js/lunr/lunr.min.js" type="text/javascript"></script>
+  <script>var initQuery = function() {
+  // See if we have a search box
+  var searchInput = document.querySelector('input#lunr_search');
+  if (searchInput === null) {
+    return;
+  }
+
+  // Function to parse our lunr cache
+  var idx = lunr(function () {
+    this.field('title')
+    this.field('excerpt')
+    this.field('categories')
+    this.field('tags')
+    this.ref('id')
+
+    this.pipeline.remove(lunr.trimmer)
+
+    for (var item in store) {
+      this.add({
+        title: store[item].title,
+        excerpt: store[item].excerpt,
+        categories: store[item].categories,
+        tags: store[item].tags,
+        id: item
+      })
+    }
+  });
+
+  // Run search upon keyup
+  searchInput.addEventListener('keyup', function () {
+    var resultdiv = document.querySelector('#results');
+    var query = document.querySelector("input#lunr_search").value.toLowerCase();
+    var result =
+      idx.query(function (q) {
+        query.split(lunr.tokenizer.separator).forEach(function (term) {
+          q.term(term, { boost: 100 })
+          if(query.lastIndexOf(" ") != query.length-1){
+            q.term(term, {  usePipeline: false, wildcard: lunr.Query.wildcard.TRAILING, boost: 10 })
+          }
+          if (term != ""){
+            q.term(term, {  usePipeline: false, editDistance: 1, boost: 1 })
+          }
+        })
+      });
+
+      // Empty the results div
+      while (resultdiv.firstChild) {
+        resultdiv.removeChild(resultdiv.firstChild);
+      }
+
+    resultdiv.insertAdjacentHTML('afterbegin', '<p class="results__found">'+result.length+' Result(s) found</p>');
+    for (var item in result) {
+      var ref = result[item].ref;
+      if(store[ref].teaser){
+        var searchitem =
+          '<div class="list__item">'+
+            '<article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">'+
+              '<h2 class="archive__item-title" itemprop="headline">'+
+                '<a href="'+store[ref].url+'" rel="permalink">'+store[ref].title+'</a>'+
+              '</h2>'+
+              '<div class="archive__item-teaser">'+
+                '<img src="'+store[ref].teaser+'" alt="">'+
+              '</div>'+
+              '<p class="archive__item-excerpt" itemprop="description">'+store[ref].excerpt.split(" ").splice(0,20).join(" ")+'...</p>'+
+            '</article>'+
+          '</div>';
+      }
+      else{
+    	  var searchitem =
+          '<div class="list__item">'+
+            '<article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">'+
+              '<h2 class="archive__item-title" itemprop="headline">'+
+                '<a href="'+store[ref].url+'" rel="permalink">'+store[ref].title+'</a>'+
+              '</h2>'+
+              '<p class="archive__item-excerpt" itemprop="description">'+store[ref].excerpt.split(" ").splice(0,20).join(" ")+'...</p>'+
+            '</article>'+
+          '</div>';
+      }
+      resultdiv.insertAdjacentHTML('beforeend', searchitem);
+    }
+  });
+};
+
+initFunction(initQuery);
+</script>
+</head>
+
+  <body>
+    <!-- .js-show-sidebar shows sidebar by default -->
+    <div id="js-textbook" class="c-textbook js-show-sidebar">
+      
+
+
+
+<nav id="js-sidebar" class="c-textbook__sidebar">
+  <a href="https://ncar-hackathons.github.io/python-general"><img src="/python-general/images/logo/ncar-mesa-lab.png" class="textbook_logo" id="sidebar-logo" data-turbolinks-permanent/></a>
+  <h2 class="c-sidebar__title">The Python General Guide</h2>
+  <ul class="c-sidebar__chapters">
+    
+      
+      
+
+      
+      
+
+      
+      
+      <li class="c-sidebar__chapter">
+        <a class="c-sidebar__entry c-sidebar__entry--active"
+          href="/python-general/intro.html"
+        >
+          
+          Home
+        </a>
+
+        
+      </li>
+
+      
+    
+      
+      
+        <li class="c-sidebar__chapter"><a class="c-sidebar__entry" href="/python-general/search.html">Search</a></li>
+        
+      
+      
+
+      
+      
+
+      
+      
+      <li class="c-sidebar__chapter">
+        <a class="c-sidebar__entry "
+          href="/python-general/introduction/intro.html"
+        >
+          
+          Getting Started with Python
+        </a>
+
+        
+
+          
+          
+          
+          
+
+          
+
+          <ul class="c-sidebar__sections ">
+            
+              
+              
+
+              <li class="c-sidebar__section">
+                <a class="c-sidebar__entry "
+                  href="/python-general/introduction/lexical_structure.html"
+                >
+                  
+                  Lexical Structure
+                </a>
+
+                
+                
+
+              </li>
+              
+            
+              
+              
+
+              <li class="c-sidebar__section">
+                <a class="c-sidebar__entry "
+                  href="/python-general/introduction/basic_data_structures.html"
+                >
+                  
+                  Basic Data Structures
+                </a>
+
+                
+                
+
+              </li>
+              
+            
+              
+              
+
+              <li class="c-sidebar__section">
+                <a class="c-sidebar__entry "
+                  href="/python-general/introduction/basic_Input_and_Output.html"
+                >
+                  
+                  Basic Input and Output
+                </a>
+
+                
+                
+
+              </li>
+              
+            
+              
+              
+
+              <li class="c-sidebar__section">
+                <a class="c-sidebar__entry "
+                  href="/python-general/introduction/conditionals.html"
+                >
+                  
+                  Conditional Statements
+                </a>
+
+                
+                
+
+              </li>
+              
+            
+              
+              
+
+              <li class="c-sidebar__section">
+                <a class="c-sidebar__entry "
+                  href="/python-general/introduction/loops.html"
+                >
+                  
+                  Loops
+                </a>
+
+                
+                
+
+              </li>
+              
+            
+              
+              
+
+              <li class="c-sidebar__section">
+                <a class="c-sidebar__entry "
+                  href="/python-general/introduction/functions.html"
+                >
+                  
+                  Functions
+                </a>
+
+                
+                
+
+              </li>
+              
+            
+              
+              
+
+              <li class="c-sidebar__section">
+                <a class="c-sidebar__entry c-sidebar__entry--active"
+                  href="/python-general/introduction/times_and_dates.html"
+                >
+                  
+                  Times and Dates
+                </a>
+
+                
+                
+
+              </li>
+              
+            
+              
+              
+
+              <li class="c-sidebar__section">
+                <a class="c-sidebar__entry "
+                  href="/python-general/introduction/whetting_your_appetite_for_python.html"
+                >
+                  
+                  Whetting Your Appetite for Python
+                </a>
+
+                
+                
+
+              </li>
+              
+            
+              
+              
+
+              <li class="c-sidebar__section">
+                <a class="c-sidebar__entry "
+                  href="/python-general/introduction/extra.html"
+                >
+                  
+                  Going Further
+                </a>
+
+                
+                
+
+              </li>
+              
+            
+          </ul>
+        
+      </li>
+
+      
+    
+  </ul>
+  <p class="sidebar_footer">Powered by <a href="https://github.com/jupyter/jupyter-book">Jupyter Book</a></p>
+</nav>
+
+      
+      <!-- Empty sidebar placeholder that we'll auto-fill with javascript -->
+      <aside class="sidebar__right">
+          <header><h4 class="nav__title"><i class="fa fa-list"></i>   On this page</h4></header>
+          <nav class="onthispage">
+          </nav>
+      </aside>
+      
+      <main class="c-textbook__page" tabindex="-1">
+          <div class="o-wrapper">
+            <div class="c-sidebar-toggle">
+  <!-- We show the sidebar by default so we use .is-active -->
+  <button
+    id="js-sidebar-toggle"
+    class="hamburger hamburger--arrowalt is-active"
+  >
+    <span class="hamburger-box">
+      <span class="hamburger-inner"></span>
+    </span>
+    <span class="c-sidebar-toggle__label">Toggle Sidebar</span>
+  </button>
+</div>
+
+            
+<div class="buttons">
+<a href="/python-general/content/introduction/times_and_dates.ipynb" download>
+<button id="interact-button-download" class="interact-button">Download</button>
+</a>
+
+<button id="interact-button-thebelab" class="interact-button">Thebelab</button>
+
+
+
+
+
+
+
+
+
+<a href="https://binder.pangeo.io/v2/gh/ncar-hackathons/python-general/master?filepath=content%2Fintroduction%2Ftimes_and_dates.ipynb"><button class="interact-button" id="interact-button-binder"><img class="interact-button-logo" src="/python-general/assets/images/logo_binder.svg" alt="Interact" />Interact</button></a>
+
+
+</div>
+
+
+            <div class="c-textbook__content">
+              <h1 id="times-and-dates">Times and Dates</h1>
+<p>Time is an essential component of nearly all geoscience data. Timescales span orders of magnitude from microseconds for lightning, hours for a supercell thunderstorm, days for a global weather model, millenia and beyond for the earth’s climate. To properly analyze geoscience data, you must have a firm understanding of how to handle time in Python. In this notebook, we will examine the Python Standard Library for handling dates and times. We will also briefly make use of the <a href="https://pypi.python.org/pypi/pytz">pytz</a> module to handle some thorny time zone issues in Python.</p>
+
+<h2 id="time-versus-datetime-modules-and-some-core-concepts"><code class="highlighter-rouge">Time</code> Versus <code class="highlighter-rouge">Datetime</code> Modules and Some Core Concepts</h2>
+
+<p>Python comes with <a href="https://docs.python.org/3/library/time.html">time</a> and <a href="https://docs.python.org/3/library/datetime.html">datetime</a> modules. Unfortunately, Python can be initially disorienting because of the heavily overlapping terminology concerning dates and times:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">datetime</code> <strong>module</strong> has a <code class="highlighter-rouge">datetime</code> <strong>class</strong></li>
+  <li><code class="highlighter-rouge">datetime</code> <strong>module</strong> has a <code class="highlighter-rouge">time</code> <strong>class</strong></li>
+  <li><code class="highlighter-rouge">datetime</code> <strong>module</strong> has a <code class="highlighter-rouge">date</code> <strong>class</strong></li>
+  <li><code class="highlighter-rouge">time</code> <strong>module</strong> has a <code class="highlighter-rouge">time</code> function which returns (almost always) <a href="#What-is-Unix-Time?">Unix time</a></li>
+  <li><code class="highlighter-rouge">datetime</code> <strong>class</strong> has a <code class="highlighter-rouge">date</code> method which returns a <code class="highlighter-rouge">date</code> object</li>
+  <li><code class="highlighter-rouge">datetime</code> <strong>class</strong> has a <code class="highlighter-rouge">time</code> method which returns a <code class="highlighter-rouge">time</code> object</li>
+</ul>
+
+<p>This confusion can be partially alleviated by aliasing our imported modules:</p>
+
+<div class="cell code_cell">
+  <div class="input_area">
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">datetime</span> <span class="k">as</span> <span class="n">dt</span>
+<span class="c"># we can now reference the datetime module (alaised to 'dt') and datetime</span>
+<span class="c"># object unambiguously</span>
+<span class="n">pisecond</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2016</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">26</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">pisecond</span><span class="p">)</span>
+</code></pre></div>    </div>
+  </div>
+
+  <div class="output_wrapper">
+    <div class="output_subarea">
+      <div class="output_stream highlighter-rouge"><div class="highlight"><pre class="highlight"><code>2016-03-14 15:09:26
+</code></pre></div>      </div>
+    </div>
+  </div>
+</div>
+
+<div class="cell code_cell">
+  <div class="input_area">
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">time</span> <span class="k">as</span> <span class="n">tm</span>
+<span class="n">now</span> <span class="o">=</span> <span class="n">tm</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="n">now</span><span class="p">)</span>
+</code></pre></div>    </div>
+  </div>
+
+  <div class="output_wrapper">
+    <div class="output_subarea">
+      <div class="output_stream highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1559320921.335239
+</code></pre></div>      </div>
+    </div>
+  </div>
+</div>
+
+<h3 id="time-module"><code class="highlighter-rouge">time</code> module</h3>
+<p>The <code class="highlighter-rouge">time</code> module is well-suited for measuring <a href="#What-is-Unix-Time?">Unix time</a>. For example, when you are calculating how long it takes a Python function to run (so-called “benchmarking”), you can employ the <code class="highlighter-rouge">time()</code> function from the <code class="highlighter-rouge">time</code> module to obtain Unix time before and after the function completes and take the difference of those two times.</p>
+
+<div class="cell code_cell">
+  <div class="input_area">
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">time</span> <span class="k">as</span> <span class="n">tm</span>
+<span class="n">start</span> <span class="o">=</span> <span class="n">tm</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="n">tm</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>  <span class="c"># The sleep function will stop the program for n seconds</span>
+<span class="n">end</span> <span class="o">=</span> <span class="n">tm</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="n">diff</span> <span class="o">=</span> <span class="n">end</span> <span class="o">-</span> <span class="n">start</span>
+<span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s">"The benchmark took {diff} seconds"</span><span class="p">)</span>
+</code></pre></div>    </div>
+  </div>
+
+  <div class="output_wrapper">
+    <div class="output_subarea">
+      <div class="output_stream highlighter-rouge"><div class="highlight"><pre class="highlight"><code>The benchmark took 1.0002760887145996 seconds
+</code></pre></div>      </div>
+    </div>
+  </div>
+</div>
+
+<p>(For more accurate benchmarking, see the <a href="https://docs.python.org/3/library/timeit.html">timeit</a> module.)</p>
+<h3 id="datetime-module"><code class="highlighter-rouge">datetime</code> module</h3>
+
+<p>The <code class="highlighter-rouge">datetime</code> module handles time with the Gregorian calendar (the calendar we are all familiar with) and is independent of Unix time. The <code class="highlighter-rouge">datetime</code> module has an <a href="#The-Thirty-Second-Introduction-to-Object-Oriented-Programming">object-oriented</a> approach with the <code class="highlighter-rouge">date</code>, <code class="highlighter-rouge">time</code>, <code class="highlighter-rouge">datetime</code>, <code class="highlighter-rouge">timedelta</code>, and <code class="highlighter-rouge">tzinfo</code> classes.</p>
+
+<ul>
+  <li><code class="highlighter-rouge">date</code> class represents the day, month and year</li>
+  <li><code class="highlighter-rouge">time</code> class represents the time of day</li>
+  <li><code class="highlighter-rouge">datetime</code> class is a combination of the <code class="highlighter-rouge">date</code> and <code class="highlighter-rouge">time</code> classes</li>
+  <li><code class="highlighter-rouge">timedelta</code> class represents a time duration</li>
+  <li><code class="highlighter-rouge">tzinfo</code> (abstract) class represents time zones</li>
+</ul>
+
+<p>The <code class="highlighter-rouge">datetime</code> module is effective for:</p>
+
+<ul>
+  <li>performing date and time arithmetic and calculating time duration</li>
+  <li>reading and writing date and time strings in a particular format</li>
+  <li>handling time zones (with the help of third-party libraries)</li>
+</ul>
+
+<p>The <code class="highlighter-rouge">time</code> and <code class="highlighter-rouge">datetime</code> modules overlap in functionality, but in your geoscientific work, you will probably be using the <code class="highlighter-rouge">datetime</code> module more than the <code class="highlighter-rouge">time</code> module.</p>
+
+<h3 id="what-is-unix-time">What is Unix Time?</h3>
+
+<p>Unix time is an example of system time which is the computer’s notion of passing time. It is measured in seconds from the the start of the epoch which is January 1, 1970 00:00 <a href="#What-is-UTC?">UTC</a>. It is represented “under the hood” as a <a href="https://en.wikipedia.org/wiki/Floating_point">floating point number</a> which is how computers represent real (ℝ) numbers .</p>
+
+<h3 id="the-thirty-second-introduction-to-object-oriented-programming">The Thirty Second Introduction to Object-Oriented Programming</h3>
+
+<p>We have been talking about object-oriented (OO) programming by mentioning terms like “class”, “object”, and “method”, but never really explaining what they mean. A class is a collection of related variables, similar to a <a href="https://en.wikipedia.org/wiki/Struct_&#40;C_programming_language&#41;">struct</a>, in the C programming language or even a tuple in Python) coupled with functions, or “methods” in OO parlance, that can act on those variables. An object is a concrete example of a class.</p>
+
+<p>For example, if you have a <code class="highlighter-rouge">Coord</code> class that represents an earth location with latitude, and longitude, you may have a method that returns the distance between two locations, <code class="highlighter-rouge">distancekm()</code> in this example.</p>
+
+<div class="cell code_cell">
+  <div class="input_area">
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">math</span>
+<span class="k">class</span> <span class="nc">Coord</span><span class="p">:</span>
+    <span class="s">"""Earth location identified by (latitude, longitude) coordinates.
+    distancekm  -- distance between two points in kilometers
+    """</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">latitude</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">longitude</span><span class="o">=</span><span class="mf">0.0</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">lat</span> <span class="o">=</span> <span class="n">latitude</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">lon</span> <span class="o">=</span> <span class="n">longitude</span>
+
+    <span class="k">def</span> <span class="nf">distancekm</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">p</span><span class="p">):</span>
+        <span class="s">"""Distance between two points in kilometers."""</span>
+        <span class="n">DEGREES_TO_RADIANS</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mf">180.0</span>
+        <span class="n">EARTH_RADIUS</span> <span class="o">=</span> <span class="mi">6373</span>  <span class="c"># in KMs</span>
+        <span class="n">phi1</span> <span class="o">=</span> <span class="p">(</span><span class="mf">90.0</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">lat</span><span class="p">)</span> <span class="o">*</span> <span class="n">DEGREES_TO_RADIANS</span>
+        <span class="n">phi2</span> <span class="o">=</span> <span class="p">(</span><span class="mf">90.0</span> <span class="o">-</span> <span class="n">p</span><span class="o">.</span><span class="n">lat</span><span class="p">)</span> <span class="o">*</span> <span class="n">DEGREES_TO_RADIANS</span>
+        <span class="n">theta1</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">lon</span> <span class="o">*</span> <span class="n">DEGREES_TO_RADIANS</span>
+        <span class="n">theta2</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">lon</span> <span class="o">*</span> <span class="n">DEGREES_TO_RADIANS</span>
+        <span class="n">cos</span> <span class="o">=</span> <span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">phi1</span><span class="p">)</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">phi2</span><span class="p">)</span> <span class="o">*</span>
+               <span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta1</span> <span class="o">-</span> <span class="n">theta2</span><span class="p">)</span> <span class="o">+</span> <span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">phi1</span><span class="p">)</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">phi2</span><span class="p">))</span>
+        <span class="n">arc</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">acos</span><span class="p">(</span><span class="n">cos</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">arc</span> <span class="o">*</span> <span class="n">EARTH_RADIUS</span>
+</code></pre></div>    </div>
+  </div>
+
+</div>
+
+<p>To create a concrete example of a <strong>class</strong>, also known as an <strong>object</strong>, initialize the object with data:</p>
+
+<div class="cell code_cell">
+  <div class="input_area">
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">timbuktu</span> <span class="o">=</span> <span class="n">Coord</span><span class="p">(</span><span class="mf">16.77</span><span class="p">,</span> <span class="mf">3.00</span><span class="p">)</span>
+</code></pre></div>    </div>
+  </div>
+
+</div>
+
+<p>Here, <code class="highlighter-rouge">timbuktu</code> is an <strong>object</strong> of the <strong>class</strong> <code class="highlighter-rouge">Coord</code> initialized with a latitude of <code class="highlighter-rouge">16.77</code> and a longitude of <code class="highlighter-rouge">3.00</code>.
+Next, we create two <code class="highlighter-rouge">Coord</code> objects: <code class="highlighter-rouge">ny</code> and <code class="highlighter-rouge">paris</code>. We will invoke the <code class="highlighter-rouge">distancekm()</code> method on the <code class="highlighter-rouge">ny</code> object and pass the <code class="highlighter-rouge">paris</code> object as an argument to determine the distance between New York and Paris in kilometers.</p>
+
+<div class="cell code_cell">
+  <div class="input_area">
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">ny</span> <span class="o">=</span> <span class="n">Coord</span><span class="p">(</span><span class="mf">40.71</span><span class="p">,</span> <span class="mf">74.01</span><span class="p">)</span>
+<span class="n">paris</span> <span class="o">=</span> <span class="n">Coord</span><span class="p">(</span><span class="mf">48.86</span><span class="p">,</span> <span class="mf">2.35</span><span class="p">)</span>
+<span class="n">distance</span> <span class="o">=</span> <span class="n">ny</span><span class="o">.</span><span class="n">distancekm</span><span class="p">(</span><span class="n">paris</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s">"The distance from New York to Paris is {distance:.1f} kilometers."</span><span class="p">)</span>
+</code></pre></div>    </div>
+  </div>
+
+  <div class="output_wrapper">
+    <div class="output_subarea">
+      <div class="output_stream highlighter-rouge"><div class="highlight"><pre class="highlight"><code>The distance from New York to Paris is 5517.0 kilometers.
+</code></pre></div>      </div>
+    </div>
+  </div>
+</div>
+
+<p>The old joke about OO programming is that they simply moved the struct that the function takes as an argument and put it first because it is special. So instead of having <code class="highlighter-rouge">distancekm(ny, paris)</code>, you have <code class="highlighter-rouge">ny.distancekm(paris)</code>. We have not talked about inheritance or polymorphism but that is OO in a nutshell.</p>
+<h2 id="reading-and-writing-dates-and-times">Reading and Writing Dates and Times</h2>
+
+<h3 id="parsing-lightning-data-timestamps-with-the-datetimestrptime-method">Parsing Lightning Data Timestamps with the <code class="highlighter-rouge">datetime.strptime</code> Method</h3>
+
+<p>Suppose you want to analyze <a href="https://ghrc.nsstc.nasa.gov/uso/ds_docs/vaiconus/vaiconus_dataset.html">US NLDN lightning data</a>. Here is a sample row of data:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>06/27/07 16:18:21.898 18.739 -88.184 0.0 kA 0 1.0 0.4 2.5 8 1.2 13 G
+</code></pre></div></div>
+
+<p>Part of the task involves parsing the <code class="highlighter-rouge">06/27/07 16:18:21.898</code> time string into a <code class="highlighter-rouge">datetime</code> object. (The full description of the data are <a href="https://ghrc.nsstc.nasa.gov/uso/ds_docs/vaiconus/vaiconus_dataset.html#a6">described here</a>.) In order to parse this string or others that follow the same format, you will employ the <a href="https://docs.python.org/3/library/datetime.html#datetime.datetime.strptime">datetime.strptime()</a> method from the <code class="highlighter-rouge">datetime</code> module. This method takes two arguments: the first is the date time string you wish to parse, the second is the format which describes exactly how the date and time are arranged. <a href="https://docs.python.org/3/library/datetime.html#strftime-and-strptime-behavior">The full range of format options is described in the Python documentation</a>. In reality, the format will take some degree of experimentation to get right. This is a situation where Python shines as you can quickly try out different solutions in the IPython interpreter. Beyond the official documentation, Google and <a href="https://stackoverflow.com/">Stack Overflow</a> are your friends in this process. Eventually, after some trial and error, you will find the <code>'%m/%d/%y %H:%M:%S.%f'</code> format will properly parse the date and time.</p>
+
+<div class="cell code_cell">
+  <div class="input_area">
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">datetime</span> <span class="k">as</span> <span class="n">dt</span>
+<span class="n">strike_time</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="s">'06/27/07 16:18:21.898'</span><span class="p">,</span>
+                                   <span class="s">'</span><span class="si">%</span><span class="s">m/</span><span class="si">%</span><span class="s">d/</span><span class="si">%</span><span class="s">y </span><span class="si">%</span><span class="s">H:</span><span class="si">%</span><span class="s">M:</span><span class="si">%</span><span class="s">S.</span><span class="si">%</span><span class="s">f'</span><span class="p">)</span>
+<span class="c"># print strike_time to see if we have properly parsed our time</span>
+<span class="k">print</span><span class="p">(</span><span class="n">strike_time</span><span class="p">)</span>
+</code></pre></div>    </div>
+  </div>
+
+  <div class="output_wrapper">
+    <div class="output_subarea">
+      <div class="output_stream highlighter-rouge"><div class="highlight"><pre class="highlight"><code>2007-06-27 16:18:21.898000
+</code></pre></div>      </div>
+    </div>
+  </div>
+</div>
+
+<h2 id="going-further">Going Further</h2>
+
+<ul>
+  <li><a href="https://docs.python.org/3/library/datetime.html">Python Datetime Library Documentation</a></li>
+</ul>
+
+              <nav class="c-page__nav">
+  
+    
+    <a id="js-page__nav__prev" class="c-page__nav__prev" href="/python-general/introduction/functions">
+      〈 <span class="u-margin-right-tiny"></span> Functions
+    </a>
+  
+
+  
+    
+    <a id="js-page__nav__next" class="c-page__nav__next" href="/python-general/introduction/whetting_your_appetite_for_python">
+      Whetting Your Appetite for Python <span class="u-margin-right-tiny"></span> 〉
+    </a>
+  
+</nav>
+
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+  </body>
+</html>
