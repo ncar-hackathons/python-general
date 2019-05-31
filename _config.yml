@@ -134,7 +134,6 @@ exclude:
   - notebooks/
   - binder
   - ci
-  - .circleci
   - scripts/
   - Gemfile
   - Gemfile.lock
@@ -143,6 +142,13 @@ exclude:
   - vendor/cache/
   - vendor/gems/
   - vendor/ruby/
+  - build-environment.yml
+  - build-requirements.txt
+  - Makefile
+  - Guardfile
+  - .pre-commit-config.yaml
+  - requirements.txt
+  - content/
 
 plugins:
   - jekyll-redirect-from

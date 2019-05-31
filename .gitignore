@@ -110,3 +110,4 @@ scripts/tests/site/content/LICENSE.md
 
 # Template build
 _build/
+.jekyll-metadata
