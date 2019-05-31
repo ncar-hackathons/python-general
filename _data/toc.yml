@@ -23,43 +23,26 @@
 - title: Search
   search: true
 
-
-- title: Jupyter Notebook Quick Start Guide
-  url: /jupyter/intro
-  not_numbered: true
-  expand_sections: true
-  sections:
-  - title: JupyterHub
-    url: /jupyter/jhub
-  - title: Jupyter Notebook - Need to Know
-    url: /jupyter/notebook_need_to_know
-  - title: Jupyter Notebook - Going Deeper
-    url: /jupyter/notebook_going_deeper
-
-
-- divider: true
-
-
 - title: Getting Started with Python
-  url: /beginners/intro
+  url: /introduction/intro
   not_numbered: true
   expand_sections: true
   sections:
   - title: Lexical Structure
-    url: /beginners/01_lexical_structure
-  - title: Data Types
-    url: /beginners/02_data_types
-  - title: Variable and Other References
-    url: /beginners/03_variables_and_references
-  - title: Sequence Operations
-    url: /beginners/04_sequence_operations
-  - title: Control Flow Statements
-    url: /beginners/05_control_flow_statements
+    url: /introduction/lexical_structure
+  - title: Basic Data Structures
+    url: /introduction/basic_data_structures
+  - title: Basic Input and Output
+    url: /introduction/basic_Input_and_Output
+  - title: Conditional Statements
+    url: /introduction/conditionals
+  - title: Loops
+    url: /introduction/loops
   - title: Functions
-    url: /beginners/06_functions
-  - title: Modules
-    url: /beginners/07_modules
-  - title: Object Oriented Python
-    url: /beginners/08_classes
-  - title: Further Reading
-    url: /beginners/extra
+    url: /introduction/functions
+  - title: Times and Dates
+    url: /introduction/times_and_dates
+  - title: Whetting Your Appetite for Python
+    url: /introduction/whetting_your_appetite_for_python
+  - title:  Going Further
+    url: /introduction/extra
